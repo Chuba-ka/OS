@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023/Debian) (preloaded format=pdflatex 2025.11.1)  1 NOV 2025 18:52
+This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023/Debian) (preloaded format=pdflatex 2025.11.1)  1 NOV 2025 19:01
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1682,13 +1682,13 @@ LaTeX Warning: Unused global option(s):
 
 (./report.aux
 LaTeX Font Info:    Trying to load font information for T2B+Tempora-TLF on inpu
-t line 8.
+t line 9.
 
 (/usr/share/texlive/texmf-dist/tex/latex/tempora/t2btempora-tlf.fd
 File: t2btempora-tlf.fd 2015/09/13 Font definitions for T2B/Tempora-TLF.
 )
 LaTeX Font Info:    Font shape `T2B/Tempora-TLF/m/n' will be
-(Font)              scaled to size 12.0pt on input line 8.
+(Font)              scaled to size 12.0pt on input line 9.
 )
 \openout1 = `report.aux'.
 
@@ -1901,72 +1901,19 @@ Underfull \hbox (badness 10000) in paragraph at lines 3--1
 (/usr/share/texlive/texmf-dist/tex/latex/listings/lstlang1.sty
 File: lstlang1.sty 2023/02/27 1.9 listings language file
 )
+Package hyperref Info: bookmark level for unknown lstlisting defaults to 0 on i
+nput line 4.
+LaTeX Font Info:    Font shape `T2B/Tempora-TLF/m/n' will be
+(Font)              scaled to size 10.0pt on input line 4.
 
-! Package Listings Error: File `src/parent(.cpp)' not found.
-
-Type X to quit or <RETURN> to proceed,
-or enter new name. (Default extension: cpp)
-
-Enter file name: 
-! Undefined control sequence.
-\\lst@inputlisting ...empty }\egroup \lst@doendpe 
-                                                  \@newlistfalse \ignorespaces 
-l.4 ...ьский процесс}]{src/parent.cpp}
-                                                  
-? 
-
-! Package Listings Error: File `src/child(.cpp)' not found.
-
-Type X to quit or <RETURN> to proceed,
-or enter new name. (Default extension: cpp)
-
-Enter file name: 
-! Undefined control sequence.
-\\lst@inputlisting ...empty }\egroup \lst@doendpe 
-                                                  \@newlistfalse \ignorespaces 
-l.8 ...�него процесса}]{src/child.cpp}
-                                                  
-? 
-
-! Package Listings Error: File `src/childProcess(.cpp)' not found.
-
-Type X to quit or <RETURN> to proceed,
-or enter new name. (Default extension: cpp)
-
-Enter file name: 
-! Undefined control sequence.
-\\lst@inputlisting ...empty }\egroup \lst@doendpe 
-                                                  \@newlistfalse \ignorespaces 
-l.12 ...�отка в child}]{src/childProcess.cpp}
-                                                  
-? 
-
-! Package Listings Error: File `src/childProcessor(.cpp)' not found.
-
-Type X to quit or <RETURN> to proceed,
-or enter new name. (Default extension: cpp)
-
-Enter file name: 
-! Undefined control sequence.
-\\lst@inputlisting ...empty }\egroup \lst@doendpe 
-                                                  \@newlistfalse \ignorespaces 
-l.16 ...� гласных}]{src/childProcessor.cpp}
-                                                  
-? 
-
-! Package Listings Error: File `src/pipe(.cpp)' not found.
-
-Type X to quit or <RETURN> to proceed,
-or enter new name. (Default extension: cpp)
-
-Enter file name: 
-! Undefined control sequence.
-\\lst@inputlisting ...empty }\egroup \lst@doendpe 
-                                                  \@newlistfalse \ignorespaces 
-l.20 ...бёртка над pipe()}]{src/pipe.cpp}
-                                                  
-? 
-
+(/home/unix/sem3/OS/lb_1/src/parent.cpp
+LaTeX Font Info:    Font shape `T2B/cmtt/bx/n' in size <10> not available
+(Font)              Font shape `T2B/cmtt/m/n' tried instead on input line 1.
+ [3])
+(/home/unix/sem3/OS/lb_1/src/child.cpp)
+(/home/unix/sem3/OS/lb_1/src/childProcess.cpp [4])
+(/home/unix/sem3/OS/lb_1/src/childProcessor.cpp)
+(/home/unix/sem3/OS/lb_1/src/pipe.cpp [5])
 Overfull \hbox (10.04367pt too wide) in paragraph at lines 379--379
 []\T2B/cmtt/m/n/12 55532 mmap(NULL,8192,PROT_READ|PROT_WRITE,MAP_PRIVATE|MAP_AN
 ONYMOUS,-1,0) =
@@ -1978,7 +1925,7 @@ Overfull \hbox (34.73764pt too wide) in paragraph at lines 379--379
  file or directory)[] 
  []
 
-
+[6]
 Overfull \hbox (40.91113pt too wide) in paragraph at lines 379--379
 []\T2B/cmtt/m/n/12 55532 openat(AT_FDCWD,"/lib/x86_64-linux-gnu/libstdc++.so.6"
 ,O_RDONLY|O_CLOEXEC)
@@ -2062,7 +2009,7 @@ Overfull \hbox (10.04367pt too wide) in paragraph at lines 379--379
 ONLY|O_CLOEXEC)
  []
 
-[3]
+
 Overfull \hbox (96.47256pt too wide) in paragraph at lines 379--379
 []\T2B/cmtt/m/n/12 55532 read(3,"\177ELF\2\1\1\3\0\0\0\0\0\0\0\0\3\0>\0\1\0\0\0
 \220\243\2\0\0\0\0\0"...,832)
@@ -2116,7 +2063,7 @@ Overfull \hbox (10.04367pt too wide) in paragraph at lines 379--379
 ONLY|O_CLOEXEC)
  []
 
-
+[7]
 Overfull \hbox (71.7786pt too wide) in paragraph at lines 379--379
 []\T2B/cmtt/m/n/12 55532 read(3,"\177ELF\2\1\1\3\0\0\0\0\0\0\0\0\3\0>\0\1\0\0\0
 \0\0\0\0\0\0\0\0"...,832)
@@ -2164,7 +2111,7 @@ Overfull \hbox (53.25812pt too wide) in paragraph at lines 379--379
 _max=RLIM64_INFINITY})
  []
 
-[4]
+
 Overfull \hbox (232.2894pt too wide) in paragraph at lines 379--379
 []\T2B/cmtt/m/n/12 55532 clone(child_stack=NULL,flags=CLONE_CHILD_CLEARTID|CLON
 E_CHILD_SETTID|SIGCHLD,child_tidptr=0x7c7bc651da10)
@@ -2176,7 +2123,7 @@ Overfull \hbox (53.25812pt too wide) in paragraph at lines 379--379
 E_CHILD_SETTID|SIGCHLD
  []
 
-
+[8]
 Overfull \hbox (53.25812pt too wide) in paragraph at lines 379--379
 []\T2B/cmtt/m/n/12 55679 execve("./child",["./child","3",""],0x7ffd87d47708 /* 
 42 vars */ <unfinished
@@ -2200,7 +2147,7 @@ Overfull \hbox (65.6051pt too wide) in paragraph at lines 379--379
 ONYMOUS,-1,0 <unfinished
  []
 
-[5]
+
 Overfull \hbox (34.73764pt too wide) in paragraph at lines 379--379
 []\T2B/cmtt/m/n/12 55680 <... access resumed>)             = -1 ENOENT (No such
  file or directory)[] 
@@ -2224,7 +2171,7 @@ Overfull \hbox (16.21716pt too wide) in paragraph at lines 379--379
 <unfinished ...>[] 
  []
 
-
+[9]
 Overfull \hbox (34.73764pt too wide) in paragraph at lines 379--379
 []\T2B/cmtt/m/n/12 55680 openat(AT_FDCWD,"/lib/x86_64-linux-gnu/libstdc++.so.6"
 ,O_RDONLY|O_CLOEXEC
@@ -2272,7 +2219,7 @@ Overfull \hbox (158.20749pt too wide) in paragraph at lines 379--379
 IVATE|MAP_FIXED|MAP_DENYWRITE,4,0x9d000
  []
 
-[6]
+
 Overfull \hbox (96.47256pt too wide) in paragraph at lines 379--379
 []\T2B/cmtt/m/n/12 55680 mmap(0x731db29e5000,552960,PROT_READ,MAP_PRIVATE|MAP_F
 IXED|MAP_DENYWRITE,3,0x1e5000
@@ -2308,7 +2255,7 @@ Overfull \hbox (121.16653pt too wide) in paragraph at lines 379--379
 VATE|MAP_FIXED|MAP_ANONYMOUS,-1,0
  []
 
-
+[10]
 Overfull \hbox (28.56415pt too wide) in paragraph at lines 379--379
 []\T2B/cmtt/m/n/12 55680 openat(AT_FDCWD,"/lib/x86_64-linux-gnu/libgcc_s.so.1",
 O_RDONLY|O_CLOEXEC
@@ -2350,7 +2297,7 @@ Overfull \hbox (84.12558pt too wide) in paragraph at lines 379--379
 XED|MAP_DENYWRITE,3,0x28000
  []
 
-[7]
+
 Overfull \hbox (3.87018pt too wide) in paragraph at lines 379--379
 []\T2B/cmtt/m/n/12 55679 mmap(NULL,185256,PROT_READ,MAP_PRIVATE|MAP_DENYWRITE,4
 ,0 <unfinished
@@ -2386,7 +2333,7 @@ Overfull \hbox (145.8605pt too wide) in paragraph at lines 379--379
 ATE|MAP_FIXED|MAP_DENYWRITE,4,0x2b000
  []
 
-
+[11]
 Overfull \hbox (164.38098pt too wide) in paragraph at lines 379--379
 []\T2B/cmtt/m/n/12 55680 <... read resumed>"\177ELF\2\1\1\3\0\0\0\0\0\0\0\0\3\0
 >\0\1\0\0\0\220\243\2\0\0\0\0\0"...,832)
@@ -2434,7 +2381,7 @@ Overfull \hbox (158.20749pt too wide) in paragraph at lines 379--379
 IVATE|MAP_FIXED|MAP_DENYWRITE,3,0x28000
  []
 
-[8]
+
 Overfull \hbox (96.47256pt too wide) in paragraph at lines 379--379
 []\T2B/cmtt/m/n/12 55680 mmap(0x731db25b0000,323584,PROT_READ,MAP_PRIVATE|MAP_F
 IXED|MAP_DENYWRITE,3,0x1b0000
@@ -2470,7 +2417,7 @@ Overfull \hbox (121.16653pt too wide) in paragraph at lines 379--379
 VATE|MAP_FIXED|MAP_ANONYMOUS,-1,0
  []
 
-
+[12]
 Overfull \hbox (96.47256pt too wide) in paragraph at lines 379--379
 []\T2B/cmtt/m/n/12 55679 mmap(0x74a03b9b0000,323584,PROT_READ,MAP_PRIVATE|MAP_F
 IXED|MAP_DENYWRITE,4,0x1b0000
@@ -2518,7 +2465,7 @@ Overfull \hbox (152.034pt too wide) in paragraph at lines 379--379
 VATE|MAP_FIXED|MAP_DENYWRITE,3,0x10000
  []
 
-[9]
+
 Overfull \hbox (139.68701pt too wide) in paragraph at lines 379--379
 []\T2B/cmtt/m/n/12 55679 <... read resumed>"\177ELF\2\1\1\3\0\0\0\0\0\0\0\0\3\0
 >\0\1\0\0\0\0\0\0\0\0\0\0\0"...,832)
@@ -2548,7 +2495,7 @@ Overfull \hbox (152.034pt too wide) in paragraph at lines 379--379
 VATE|MAP_FIXED|MAP_DENYWRITE,4,0x10000
  []
 
-
+[13]
 Overfull \hbox (65.6051pt too wide) in paragraph at lines 379--379
 []\T2B/cmtt/m/n/12 55680 mmap(NULL,8192,PROT_READ|PROT_WRITE,MAP_PRIVATE|MAP_AN
 ONYMOUS,-1,0 <unfinished
@@ -2584,7 +2531,7 @@ Overfull \hbox (71.7786pt too wide) in paragraph at lines 379--379
 NONYMOUS,-1,0 <unfinished
  []
 
-[10]
+[14]
 Overfull \hbox (53.25812pt too wide) in paragraph at lines 379--379
 []\T2B/cmtt/m/n/12 55680 prlimit64(0,RLIMIT_STACK,NULL,{rlim_cur=8192*1024,rlim
 _max=RLIM64_INFINITY})
@@ -2608,7 +2555,7 @@ Overfull \hbox (34.73764pt too wide) in paragraph at lines 379--379
  file or directory)[] 
  []
 
-[11]
+
 Overfull \hbox (40.91113pt too wide) in paragraph at lines 379--379
 []\T2B/cmtt/m/n/12 55679 <... getrandom resumed>"\x59\xeb\x70\x5f\x8b\x9e\xc0\x
 6e",8,GRND_NONBLOCK)
@@ -2632,33 +2579,34 @@ Overfull \hbox (244.63638pt too wide) in paragraph at lines 379--379
 =55680,si_uid=1000,si_status=0,si_utime=0,si_stime=0}
  []
 
-
+[15]
 Overfull \hbox (244.63638pt too wide) in paragraph at lines 379--379
 []\T2B/cmtt/m/n/12 55532 ---SIGCHLD {si_signo=SIGCHLD,si_code=CLD_EXITED,si_pid
 =55679,si_uid=1000,si_status=0,si_utime=0,si_stime=0}
  []
 
-) [12] (./report.aux)
+) [16] (./report.aux)
  ***********
 LaTeX2e <2023-11-01> patch level 1
 L3 programming layer <2024-01-22>
  ***********
  ) 
 Here is how much of TeX's memory you used:
- 20865 strings out of 474222
- 331401 string characters out of 5748733
- 1942975 words of memory out of 5000000
- 42769 multiletter control sequences out of 15000+600000
- 574548 words of font info for 58 fonts, out of 8000000 for 9000
+ 21617 strings out of 474222
+ 340054 string characters out of 5748733
+ 2167975 words of memory out of 5000000
+ 43299 multiletter control sequences out of 15000+600000
+ 576697 words of font info for 60 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 90i,7n,109p,1003b,1417s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 90i,7n,109p,1003b,2463s stack positions out of 10000i,1000n,20000p,200000b,200000s
 </usr/share/texlive/texmf-dist/fonts/type1/public/tempora/Tempora-Bold.pfb></
 usr/share/texlive/texmf-dist/fonts/type1/public/tempora/Tempora-Regular.pfb></u
-sr/share/texmf/fonts/type1/public/cm-super/sftt1200.pfb>
-Output written on report.pdf (13 pages, 114469 bytes).
+sr/share/texmf/fonts/type1/public/cm-super/sftt1000.pfb></usr/share/texmf/fonts
+/type1/public/cm-super/sftt1200.pfb>
+Output written on report.pdf (17 pages, 163263 bytes).
 PDF statistics:
- 113 PDF objects out of 1000 (max. 8388607)
- 91 compressed objects within 1 object stream
- 20 named destinations out of 1000 (max. 500000)
+ 380 PDF objects out of 1000 (max. 8388607)
+ 349 compressed objects within 4 object streams
+ 224 named destinations out of 1000 (max. 500000)
  3641 words of extra memory for PDF output out of 10000 (max. 10000000)
 
