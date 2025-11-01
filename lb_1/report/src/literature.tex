@@ -1,19 +1,26 @@
 \section{Исходная программа}
 
-Сюда вставляем ваш код (весь)
-
 \begin{center}
-\lstinputlisting[language=C++,caption=*Сюда описание*,captionpos=b]{inc/example.cpp}
+\lstinputlisting[language=C++,caption={src/parent.cpp — родительский процесс}]{src/parent.cpp}
 \end{center}
 
-А таким образом можно вставлять "сырой" код в виде текста
-\begin{lstlisting}[language=C++]
-#include <iostream>
+\begin{center}
+\lstinputlisting[language=C++,caption={src/child.cpp — точка входа дочернего процесса}]{src/child.cpp}
+\end{center}
 
-int main() {
-    std::cout << "Hello, world!" << std::endl;
-    return 0;
-}
-\end{lstlisting}
+\begin{center}
+\lstinputlisting[language=C++,caption={src/childProcess.cpp — обработка в child}]{src/childProcess.cpp}
+\end{center}
 
-Также сюда необходимо будет вставить strace (утилита, которая будет выводить системные вызовы вашей программы)
+\begin{center}
+\lstinputlisting[language=C++,caption={src/childProcessor.cpp — удаление гласных}]{src/childProcessor.cpp}
+\end{center}
+
+\begin{center}
+\lstinputlisting[language=C++,caption={src/pipe.cpp — обёртка над pipe()}]{src/pipe.cpp}
+\end{center}
+
+\section{Системные вызовы}
+\begin{verbatim}
+Ваш текст о системных вызовах здесь...
+\end{verbatim}  
