@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023/Debian) (preloaded format=pdflatex 2025.11.1)  1 NOV 2025 18:14
+This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023/Debian) (preloaded format=pdflatex 2025.11.1)  1 NOV 2025 18:52
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1621,6 +1621,40 @@ Package graphics Info: Driver file: pdftex.def on input line 107.
 \Gin@req@height=\dimen176
 \Gin@req@width=\dimen177
 )
+(/usr/share/texlive/texmf-dist/tex/latex/bookmark/bookmark.sty
+Package: bookmark 2023-12-10 v1.31 PDF bookmarks (HO)
+
+(/usr/share/texlive/texmf-dist/tex/latex/bookmark/bkm-pdftex.def
+File: bkm-pdftex.def 2023-12-10 v1.31 bookmark driver for pdfTeX and luaTeX (HO
+)
+\BKM@id=\count313
+))
+(/usr/share/texlive/texmf-dist/tex/latex/microtype/microtype.sty
+Package: microtype 2023/03/13 v3.1a Micro-typographical refinements (RS)
+\MT@toks=\toks35
+\MT@tempbox=\box64
+\MT@count=\count314
+LaTeX Info: Redefining \noprotrusionifhmode on input line 1059.
+LaTeX Info: Redefining \leftprotrusion on input line 1060.
+\MT@prot@toks=\toks36
+LaTeX Info: Redefining \rightprotrusion on input line 1078.
+LaTeX Info: Redefining \textls on input line 1368.
+\MT@outer@kern=\dimen178
+LaTeX Info: Redefining \textmicrotypecontext on input line 1988.
+\MT@listname@count=\count315
+
+(/usr/share/texlive/texmf-dist/tex/latex/microtype/microtype-pdftex.def
+File: microtype-pdftex.def 2023/03/13 v3.1a Definitions specific to pdftex (RS)
+
+LaTeX Info: Redefining \lsstyle on input line 902.
+LaTeX Info: Redefining \lslig on input line 902.
+\MT@outer@space=\skip65
+)
+Package microtype Info: Loading configuration file microtype.cfg.
+
+(/usr/share/texlive/texmf-dist/tex/latex/microtype/microtype.cfg
+File: microtype.cfg 2023/03/13 v3.1a microtype main configuration file (RS)
+))
 (/usr/share/texlive/texmf-dist/tex/latex/listings/lstlang1.sty
 File: lstlang1.sty 2023/02/27 1.9 listings language file
 )
@@ -1639,8 +1673,8 @@ LaTeX Font Info:    Font shape `T1/Tempora-TLF/m/n' will be
 
 (/usr/share/texlive/texmf-dist/tex/latex/l3backend/l3backend-pdftex.def
 File: l3backend-pdftex.def 2024-01-04 L3 backend support: PDF output (pdfTeX)
-\l__color_backend_stack_int=\count313
-\l__pdf_internal_box=\box64
+\l__color_backend_stack_int=\count316
+\l__pdf_internal_box=\box65
 )
 
 LaTeX Warning: Unused global option(s):
@@ -1746,27 +1780,22 @@ LaTeX Info: Redefining \th on input line 4.
 * \@reversemarginfalse
 * (1in=72.27pt=25.4mm, 1cm=28.453pt)
 
-\c@mv@tabular=\count314
-\c@mv@boldtabular=\count315
+\c@mv@tabular=\count317
+\c@mv@boldtabular=\count318
 Package hyperref Info: Link coloring OFF on input line 4.
-(./report.out) (./report.out)
-\@outlinefile=\write3
-\openout3 = `report.out'.
-
-
 (/usr/share/texlive/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
-\scratchcounter=\count316
-\scratchdimen=\dimen178
-\scratchbox=\box65
-\nofMPsegments=\count317
-\nofMParguments=\count318
-\everyMPshowfont=\toks35
-\MPscratchCnt=\count319
-\MPscratchDim=\dimen179
-\MPnumerator=\count320
-\makeMPintoPDFobject=\count321
-\everyMPtoPDFconversion=\toks36
+\scratchcounter=\count319
+\scratchdimen=\dimen179
+\scratchbox=\box66
+\nofMPsegments=\count320
+\nofMParguments=\count321
+\everyMPshowfont=\toks37
+\MPscratchCnt=\count322
+\MPscratchDim=\dimen180
+\MPnumerator=\count323
+\makeMPintoPDFobject=\count324
+\everyMPtoPDFconversion=\toks38
 ) (/usr/share/texlive/texmf-dist/tex/latex/epstopdf-pkg/epstopdf-base.sty
 Package: epstopdf-base 2020-01-24 v2.11 Base part for package epstopdf
 Package epstopdf-base Info: Redefining graphics rule for `.eps' on input line 4
@@ -1776,24 +1805,56 @@ Package epstopdf-base Info: Redefining graphics rule for `.eps' on input line 4
 File: epstopdf-sys.cfg 2010/07/13 v1.3 Configuration of (r)epstopdf for TeX Liv
 e
 ))
-\c@lstlisting=\count322
+\c@lstlisting=\count325
+LaTeX Info: Redefining \microtypecontext on input line 4.
+Package microtype Info: Applying patch `item' on input line 4.
+Package microtype Info: Applying patch `toc' on input line 4.
+Package microtype Info: Applying patch `eqnum' on input line 4.
+Package microtype Info: Applying patch `footnote' on input line 4.
+Package microtype Info: Applying patch `verbatim' on input line 4.
+Package microtype Info: Generating PDF output.
+Package microtype Info: Character protrusion enabled (level 2).
+Package microtype Info: Using default protrusion set `alltext'.
+Package microtype Info: Automatic font expansion enabled (level 2),
+(microtype)             stretch: 20, shrink: 20, step: 1, non-selected.
+Package microtype Info: Using default expansion set `alltext-nott'.
+LaTeX Info: Redefining \showhyphens on input line 4.
+Package microtype Info: No adjustment of tracking.
+Package microtype Info: No adjustment of interword spacing.
+Package microtype Info: No adjustment of character kerning.
 
+(/usr/share/texlive/texmf-dist/tex/latex/microtype/mt-ptm.cfg
+File: mt-ptm.cfg 2006/04/20 v1.7 microtype config. file: Times (RS)
+)
 (./src/titlepage.tex
 LaTeX Font Info:    Font shape `T2B/Tempora-TLF/m/n' will be
-(Font)              scaled to size 14.4pt on input line 3.
+(Font)              scaled to size 14.4pt on input line 4.
 LaTeX Font Info:    Font shape `T2B/Tempora-TLF/b/n' will be
-(Font)              scaled to size 12.0pt on input line 16.
+(Font)              scaled to size 12.0pt on input line 18.
 LaTeX Font Info:    Font shape `T2B/Tempora-TLF/b/n' will be
-(Font)              scaled to size 14.4pt on input line 17.
+(Font)              scaled to size 14.4pt on input line 18.
+
+(/usr/share/texlive/texmf-dist/tex/latex/microtype/mt-cmr.cfg
+File: mt-cmr.cfg 2013/05/19 v2.2 microtype config. file: Computer Modern Roman 
+(RS)
+)
 LaTeX Font Info:    Trying to load font information for U+msa on input line 28.
 
- (/usr/share/texlive/texmf-dist/tex/latex/amsfonts/umsa.fd
+
+(/usr/share/texlive/texmf-dist/tex/latex/amsfonts/umsa.fd
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
+)
+(/usr/share/texlive/texmf-dist/tex/latex/microtype/mt-msa.cfg
+File: mt-msa.cfg 2006/02/04 v1.1 microtype config. file: AMS symbols (a) (RS)
 )
 LaTeX Font Info:    Trying to load font information for U+msb on input line 28.
 
+
 (/usr/share/texlive/texmf-dist/tex/latex/amsfonts/umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
+)
+(/usr/share/texlive/texmf-dist/tex/latex/microtype/mt-msb.cfg
+File: mt-msb.cfg 2005/06/01 v1.0 microtype config. file: AMS symbols (b) (RS)
 ) [1
 
 {/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}{/usr/share/texlive/texmf-di
@@ -1905,36 +1966,699 @@ Enter file name:
 l.20 ...бёртка над pipe()}]{src/pipe.cpp}
                                                   
 ? 
-) [3] (./report.aux)
+
+Overfull \hbox (10.04367pt too wide) in paragraph at lines 379--379
+[]\T2B/cmtt/m/n/12 55532 mmap(NULL,8192,PROT_READ|PROT_WRITE,MAP_PRIVATE|MAP_AN
+ONYMOUS,-1,0) =
+ []
+
+
+Overfull \hbox (34.73764pt too wide) in paragraph at lines 379--379
+[]\T2B/cmtt/m/n/12 55532 access("/etc/ld.so.preload",R_OK) = -1 ENOENT (No such
+ file or directory)[] 
+ []
+
+
+Overfull \hbox (40.91113pt too wide) in paragraph at lines 379--379
+[]\T2B/cmtt/m/n/12 55532 openat(AT_FDCWD,"/lib/x86_64-linux-gnu/libstdc++.so.6"
+,O_RDONLY|O_CLOEXEC)
+ []
+
+
+Overfull \hbox (71.7786pt too wide) in paragraph at lines 379--379
+[]\T2B/cmtt/m/n/12 55532 read(3,"\177ELF\2\1\1\3\0\0\0\0\0\0\0\0\3\0>\0\1\0\0\0
+\0\0\0\0\0\0\0\0"...,832)
+ []
+
+
+Overfull \hbox (47.08463pt too wide) in paragraph at lines 379--379
+[]\T2B/cmtt/m/n/12 55532 mmap(NULL,2609472,PROT_READ,MAP_PRIVATE|MAP_DENYWRITE,
+3,0) = 0x7c7bc6200000[] 
+ []
+
+
+Overfull \hbox (164.38098pt too wide) in paragraph at lines 379--379
+[]\T2B/cmtt/m/n/12 55532 mmap(0x7c7bc629d000,1343488,PROT_READ|PROT_EXEC,MAP_PR
+IVATE|MAP_FIXED|MAP_DENYWRITE,3,0x9d000)
+ []
+
+
+Overfull \hbox (102.64606pt too wide) in paragraph at lines 379--379
+[]\T2B/cmtt/m/n/12 55532 mmap(0x7c7bc63e5000,552960,PROT_READ,MAP_PRIVATE|MAP_F
+IXED|MAP_DENYWRITE,3,0x1e5000)
+ []
+
+
+Overfull \hbox (164.38098pt too wide) in paragraph at lines 379--379
+[]\T2B/cmtt/m/n/12 55532 mmap(0x7c7bc646c000,57344,PROT_READ|PROT_WRITE,MAP_PRI
+VATE|MAP_FIXED|MAP_DENYWRITE,3,0x26b000)
+ []
+
+
+Overfull \hbox (127.34003pt too wide) in paragraph at lines 379--379
+[]\T2B/cmtt/m/n/12 55532 mmap(0x7c7bc647a000,12608,PROT_READ|PROT_WRITE,MAP_PRI
+VATE|MAP_FIXED|MAP_ANONYMOUS,-1,0)
+ []
+
+
+Overfull \hbox (34.73764pt too wide) in paragraph at lines 379--379
+[]\T2B/cmtt/m/n/12 55532 openat(AT_FDCWD,"/lib/x86_64-linux-gnu/libgcc_s.so.1",
+O_RDONLY|O_CLOEXEC)
+ []
+
+
+Overfull \hbox (71.7786pt too wide) in paragraph at lines 379--379
+[]\T2B/cmtt/m/n/12 55532 read(3,"\177ELF\2\1\1\0\0\0\0\0\0\0\0\0\3\0>\0\1\0\0\0
+\0\0\0\0\0\0\0\0"...,832)
+ []
+
+
+Overfull \hbox (40.91113pt too wide) in paragraph at lines 379--379
+[]\T2B/cmtt/m/n/12 55532 mmap(NULL,185256,PROT_READ,MAP_PRIVATE|MAP_DENYWRITE,3
+,0) = 0x7c7bc660b000[] 
+ []
+
+
+Overfull \hbox (152.034pt too wide) in paragraph at lines 379--379
+[]\T2B/cmtt/m/n/12 55532 mmap(0x7c7bc660f000,147456,PROT_READ|PROT_EXEC,MAP_PRI
+VATE|MAP_FIXED|MAP_DENYWRITE,3,0x4000)
+ []
+
+
+Overfull \hbox (90.29907pt too wide) in paragraph at lines 379--379
+[]\T2B/cmtt/m/n/12 55532 mmap(0x7c7bc6633000,16384,PROT_READ,MAP_PRIVATE|MAP_FI
+XED|MAP_DENYWRITE,3,0x28000)
+ []
+
+
+Overfull \hbox (152.034pt too wide) in paragraph at lines 379--379
+[]\T2B/cmtt/m/n/12 55532 mmap(0x7c7bc6637000,8192,PROT_READ|PROT_WRITE,MAP_PRIV
+ATE|MAP_FIXED|MAP_DENYWRITE,3,0x2b000)
+ []
+
+
+Overfull \hbox (10.04367pt too wide) in paragraph at lines 379--379
+[]\T2B/cmtt/m/n/12 55532 openat(AT_FDCWD,"/lib/x86_64-linux-gnu/libc.so.6",O_RD
+ONLY|O_CLOEXEC)
+ []
+
+[3]
+Overfull \hbox (96.47256pt too wide) in paragraph at lines 379--379
+[]\T2B/cmtt/m/n/12 55532 read(3,"\177ELF\2\1\1\3\0\0\0\0\0\0\0\0\3\0>\0\1\0\0\0
+\220\243\2\0\0\0\0\0"...,832)
+ []
+
+
+Overfull \hbox (102.64606pt too wide) in paragraph at lines 379--379
+[]\T2B/cmtt/m/n/12 55532 pread64(3,"\6\0\0\0\4\0\0\0@\0\0\0\0\0\0\0@\0\0\0\0\0\
+0\0@\0\0\0\0\0\0\0"...,784,64)
+ []
+
+
+Overfull \hbox (102.64606pt too wide) in paragraph at lines 379--379
+[]\T2B/cmtt/m/n/12 55532 pread64(3,"\6\0\0\0\4\0\0\0@\0\0\0\0\0\0\0@\0\0\0\0\0\
+0\0@\0\0\0\0\0\0\0"...,784,64)
+ []
+
+
+Overfull \hbox (47.08463pt too wide) in paragraph at lines 379--379
+[]\T2B/cmtt/m/n/12 55532 mmap(NULL,2170256,PROT_READ,MAP_PRIVATE|MAP_DENYWRITE,
+3,0) = 0x7c7bc5e00000[] 
+ []
+
+
+Overfull \hbox (164.38098pt too wide) in paragraph at lines 379--379
+[]\T2B/cmtt/m/n/12 55532 mmap(0x7c7bc5e28000,1605632,PROT_READ|PROT_EXEC,MAP_PR
+IVATE|MAP_FIXED|MAP_DENYWRITE,3,0x28000)
+ []
+
+
+Overfull \hbox (102.64606pt too wide) in paragraph at lines 379--379
+[]\T2B/cmtt/m/n/12 55532 mmap(0x7c7bc5fb0000,323584,PROT_READ,MAP_PRIVATE|MAP_F
+IXED|MAP_DENYWRITE,3,0x1b0000)
+ []
+
+
+Overfull \hbox (164.38098pt too wide) in paragraph at lines 379--379
+[]\T2B/cmtt/m/n/12 55532 mmap(0x7c7bc5fff000,24576,PROT_READ|PROT_WRITE,MAP_PRI
+VATE|MAP_FIXED|MAP_DENYWRITE,3,0x1fe000)
+ []
+
+
+Overfull \hbox (127.34003pt too wide) in paragraph at lines 379--379
+[]\T2B/cmtt/m/n/12 55532 mmap(0x7c7bc6005000,52624,PROT_READ|PROT_WRITE,MAP_PRI
+VATE|MAP_FIXED|MAP_ANONYMOUS,-1,0)
+ []
+
+
+Overfull \hbox (10.04367pt too wide) in paragraph at lines 379--379
+[]\T2B/cmtt/m/n/12 55532 openat(AT_FDCWD,"/lib/x86_64-linux-gnu/libm.so.6",O_RD
+ONLY|O_CLOEXEC)
+ []
+
+
+Overfull \hbox (71.7786pt too wide) in paragraph at lines 379--379
+[]\T2B/cmtt/m/n/12 55532 read(3,"\177ELF\2\1\1\3\0\0\0\0\0\0\0\0\3\0>\0\1\0\0\0
+\0\0\0\0\0\0\0\0"...,832)
+ []
+
+
+Overfull \hbox (40.91113pt too wide) in paragraph at lines 379--379
+[]\T2B/cmtt/m/n/12 55532 mmap(NULL,950296,PROT_READ,MAP_PRIVATE|MAP_DENYWRITE,3
+,0) = 0x7c7bc6522000[] 
+ []
+
+
+Overfull \hbox (158.20749pt too wide) in paragraph at lines 379--379
+[]\T2B/cmtt/m/n/12 55532 mmap(0x7c7bc6532000,520192,PROT_READ|PROT_EXEC,MAP_PRI
+VATE|MAP_FIXED|MAP_DENYWRITE,3,0x10000)
+ []
+
+
+Overfull \hbox (96.47256pt too wide) in paragraph at lines 379--379
+[]\T2B/cmtt/m/n/12 55532 mmap(0x7c7bc65b1000,360448,PROT_READ,MAP_PRIVATE|MAP_F
+IXED|MAP_DENYWRITE,3,0x8f000)
+ []
+
+
+Overfull \hbox (152.034pt too wide) in paragraph at lines 379--379
+[]\T2B/cmtt/m/n/12 55532 mmap(0x7c7bc6609000,8192,PROT_READ|PROT_WRITE,MAP_PRIV
+ATE|MAP_FIXED|MAP_DENYWRITE,3,0xe7000)
+ []
+
+
+Overfull \hbox (10.04367pt too wide) in paragraph at lines 379--379
+[]\T2B/cmtt/m/n/12 55532 mmap(NULL,8192,PROT_READ|PROT_WRITE,MAP_PRIVATE|MAP_AN
+ONYMOUS,-1,0) =
+ []
+
+
+Overfull \hbox (3.87018pt too wide) in paragraph at lines 379--379
+[]\T2B/cmtt/m/n/12 55532 mmap(NULL,12288,PROT_READ|PROT_WRITE,MAP_PRIVATE|MAP_A
+NONYMOUS,-1,0)
+ []
+
+
+Overfull \hbox (53.25812pt too wide) in paragraph at lines 379--379
+[]\T2B/cmtt/m/n/12 55532 prlimit64(0,RLIMIT_STACK,NULL,{rlim_cur=8192*1024,rlim
+_max=RLIM64_INFINITY})
+ []
+
+[4]
+Overfull \hbox (232.2894pt too wide) in paragraph at lines 379--379
+[]\T2B/cmtt/m/n/12 55532 clone(child_stack=NULL,flags=CLONE_CHILD_CLEARTID|CLON
+E_CHILD_SETTID|SIGCHLD,child_tidptr=0x7c7bc651da10)
+ []
+
+
+Overfull \hbox (53.25812pt too wide) in paragraph at lines 379--379
+[]\T2B/cmtt/m/n/12 55532 clone(child_stack=NULL,flags=CLONE_CHILD_CLEARTID|CLON
+E_CHILD_SETTID|SIGCHLD
+ []
+
+
+Overfull \hbox (53.25812pt too wide) in paragraph at lines 379--379
+[]\T2B/cmtt/m/n/12 55679 execve("./child",["./child","3",""],0x7ffd87d47708 /* 
+42 vars */ <unfinished
+ []
+
+
+Overfull \hbox (10.04367pt too wide) in paragraph at lines 379--379
+[]\T2B/cmtt/m/n/12 55680 execve("./child",["./child","5",""],0x7ffd87d47708 /* 
+42 vars */) = 0[] 
+ []
+
+
+Overfull \hbox (65.6051pt too wide) in paragraph at lines 379--379
+[]\T2B/cmtt/m/n/12 55680 mmap(NULL,8192,PROT_READ|PROT_WRITE,MAP_PRIVATE|MAP_AN
+ONYMOUS,-1,0 <unfinished
+ []
+
+
+Overfull \hbox (65.6051pt too wide) in paragraph at lines 379--379
+[]\T2B/cmtt/m/n/12 55679 mmap(NULL,8192,PROT_READ|PROT_WRITE,MAP_PRIVATE|MAP_AN
+ONYMOUS,-1,0 <unfinished
+ []
+
+[5]
+Overfull \hbox (34.73764pt too wide) in paragraph at lines 379--379
+[]\T2B/cmtt/m/n/12 55680 <... access resumed>)             = -1 ENOENT (No such
+ file or directory)[] 
+ []
+
+
+Overfull \hbox (34.73764pt too wide) in paragraph at lines 379--379
+[]\T2B/cmtt/m/n/12 55679 <... access resumed>)             = -1 ENOENT (No such
+ file or directory)[] 
+ []
+
+
+Overfull \hbox (16.21716pt too wide) in paragraph at lines 379--379
+[]\T2B/cmtt/m/n/12 55680 openat(AT_FDCWD,"/etc/ld.so.cache",O_RDONLY|O_CLOEXEC 
+<unfinished ...>[] 
+ []
+
+
+Overfull \hbox (16.21716pt too wide) in paragraph at lines 379--379
+[]\T2B/cmtt/m/n/12 55679 openat(AT_FDCWD,"/etc/ld.so.cache",O_RDONLY|O_CLOEXEC 
+<unfinished ...>[] 
+ []
+
+
+Overfull \hbox (34.73764pt too wide) in paragraph at lines 379--379
+[]\T2B/cmtt/m/n/12 55680 openat(AT_FDCWD,"/lib/x86_64-linux-gnu/libstdc++.so.6"
+,O_RDONLY|O_CLOEXEC
+ []
+
+
+Overfull \hbox (34.73764pt too wide) in paragraph at lines 379--379
+[]\T2B/cmtt/m/n/12 55679 openat(AT_FDCWD,"/lib/x86_64-linux-gnu/libstdc++.so.6"
+,O_RDONLY|O_CLOEXEC
+ []
+
+
+Overfull \hbox (139.68701pt too wide) in paragraph at lines 379--379
+[]\T2B/cmtt/m/n/12 55680 <... read resumed>"\177ELF\2\1\1\3\0\0\0\0\0\0\0\0\3\0
+>\0\1\0\0\0\0\0\0\0\0\0\0\0"...,832)
+ []
+
+
+Overfull \hbox (139.68701pt too wide) in paragraph at lines 379--379
+[]\T2B/cmtt/m/n/12 55679 <... read resumed>"\177ELF\2\1\1\3\0\0\0\0\0\0\0\0\3\0
+>\0\1\0\0\0\0\0\0\0\0\0\0\0"...,832)
+ []
+
+
+Overfull \hbox (10.04367pt too wide) in paragraph at lines 379--379
+[]\T2B/cmtt/m/n/12 55680 mmap(NULL,2609472,PROT_READ,MAP_PRIVATE|MAP_DENYWRITE,
+3,0 <unfinished
+ []
+
+
+Overfull \hbox (10.04367pt too wide) in paragraph at lines 379--379
+[]\T2B/cmtt/m/n/12 55679 mmap(NULL,2609472,PROT_READ,MAP_PRIVATE|MAP_DENYWRITE,
+4,0 <unfinished
+ []
+
+
+Overfull \hbox (158.20749pt too wide) in paragraph at lines 379--379
+[]\T2B/cmtt/m/n/12 55680 mmap(0x731db289d000,1343488,PROT_READ|PROT_EXEC,MAP_PR
+IVATE|MAP_FIXED|MAP_DENYWRITE,3,0x9d000
+ []
+
+
+Overfull \hbox (158.20749pt too wide) in paragraph at lines 379--379
+[]\T2B/cmtt/m/n/12 55679 mmap(0x74a03bc9d000,1343488,PROT_READ|PROT_EXEC,MAP_PR
+IVATE|MAP_FIXED|MAP_DENYWRITE,4,0x9d000
+ []
+
+[6]
+Overfull \hbox (96.47256pt too wide) in paragraph at lines 379--379
+[]\T2B/cmtt/m/n/12 55680 mmap(0x731db29e5000,552960,PROT_READ,MAP_PRIVATE|MAP_F
+IXED|MAP_DENYWRITE,3,0x1e5000
+ []
+
+
+Overfull \hbox (96.47256pt too wide) in paragraph at lines 379--379
+[]\T2B/cmtt/m/n/12 55679 mmap(0x74a03bde5000,552960,PROT_READ,MAP_PRIVATE|MAP_F
+IXED|MAP_DENYWRITE,4,0x1e5000
+ []
+
+
+Overfull \hbox (158.20749pt too wide) in paragraph at lines 379--379
+[]\T2B/cmtt/m/n/12 55680 mmap(0x731db2a6c000,57344,PROT_READ|PROT_WRITE,MAP_PRI
+VATE|MAP_FIXED|MAP_DENYWRITE,3,0x26b000
+ []
+
+
+Overfull \hbox (158.20749pt too wide) in paragraph at lines 379--379
+[]\T2B/cmtt/m/n/12 55679 mmap(0x74a03be6c000,57344,PROT_READ|PROT_WRITE,MAP_PRI
+VATE|MAP_FIXED|MAP_DENYWRITE,4,0x26b000
+ []
+
+
+Overfull \hbox (121.16653pt too wide) in paragraph at lines 379--379
+[]\T2B/cmtt/m/n/12 55680 mmap(0x731db2a7a000,12608,PROT_READ|PROT_WRITE,MAP_PRI
+VATE|MAP_FIXED|MAP_ANONYMOUS,-1,0
+ []
+
+
+Overfull \hbox (121.16653pt too wide) in paragraph at lines 379--379
+[]\T2B/cmtt/m/n/12 55679 mmap(0x74a03be7a000,12608,PROT_READ|PROT_WRITE,MAP_PRI
+VATE|MAP_FIXED|MAP_ANONYMOUS,-1,0
+ []
+
+
+Overfull \hbox (28.56415pt too wide) in paragraph at lines 379--379
+[]\T2B/cmtt/m/n/12 55680 openat(AT_FDCWD,"/lib/x86_64-linux-gnu/libgcc_s.so.1",
+O_RDONLY|O_CLOEXEC
+ []
+
+
+Overfull \hbox (28.56415pt too wide) in paragraph at lines 379--379
+[]\T2B/cmtt/m/n/12 55679 openat(AT_FDCWD,"/lib/x86_64-linux-gnu/libgcc_s.so.1",
+O_RDONLY|O_CLOEXEC
+ []
+
+
+Overfull \hbox (139.68701pt too wide) in paragraph at lines 379--379
+[]\T2B/cmtt/m/n/12 55680 <... read resumed>"\177ELF\2\1\1\0\0\0\0\0\0\0\0\0\3\0
+>\0\1\0\0\0\0\0\0\0\0\0\0\0"...,832)
+ []
+
+
+Overfull \hbox (3.87018pt too wide) in paragraph at lines 379--379
+[]\T2B/cmtt/m/n/12 55680 mmap(NULL,185256,PROT_READ,MAP_PRIVATE|MAP_DENYWRITE,3
+,0 <unfinished
+ []
+
+
+Overfull \hbox (139.68701pt too wide) in paragraph at lines 379--379
+[]\T2B/cmtt/m/n/12 55679 <... read resumed>"\177ELF\2\1\1\0\0\0\0\0\0\0\0\0\3\0
+>\0\1\0\0\0\0\0\0\0\0\0\0\0"...,832)
+ []
+
+
+Overfull \hbox (145.8605pt too wide) in paragraph at lines 379--379
+[]\T2B/cmtt/m/n/12 55680 mmap(0x731db2b82000,147456,PROT_READ|PROT_EXEC,MAP_PRI
+VATE|MAP_FIXED|MAP_DENYWRITE,3,0x4000
+ []
+
+
+Overfull \hbox (84.12558pt too wide) in paragraph at lines 379--379
+[]\T2B/cmtt/m/n/12 55680 mmap(0x731db2ba6000,16384,PROT_READ,MAP_PRIVATE|MAP_FI
+XED|MAP_DENYWRITE,3,0x28000
+ []
+
+[7]
+Overfull \hbox (3.87018pt too wide) in paragraph at lines 379--379
+[]\T2B/cmtt/m/n/12 55679 mmap(NULL,185256,PROT_READ,MAP_PRIVATE|MAP_DENYWRITE,4
+,0 <unfinished
+ []
+
+
+Overfull \hbox (145.8605pt too wide) in paragraph at lines 379--379
+[]\T2B/cmtt/m/n/12 55680 mmap(0x731db2baa000,8192,PROT_READ|PROT_WRITE,MAP_PRIV
+ATE|MAP_FIXED|MAP_DENYWRITE,3,0x2b000
+ []
+
+
+Overfull \hbox (145.8605pt too wide) in paragraph at lines 379--379
+[]\T2B/cmtt/m/n/12 55679 mmap(0x74a03c020000,147456,PROT_READ|PROT_EXEC,MAP_PRI
+VATE|MAP_FIXED|MAP_DENYWRITE,4,0x4000
+ []
+
+
+Overfull \hbox (84.12558pt too wide) in paragraph at lines 379--379
+[]\T2B/cmtt/m/n/12 55679 mmap(0x74a03c044000,16384,PROT_READ,MAP_PRIVATE|MAP_FI
+XED|MAP_DENYWRITE,4,0x28000
+ []
+
+
+Overfull \hbox (3.87018pt too wide) in paragraph at lines 379--379
+[]\T2B/cmtt/m/n/12 55680 openat(AT_FDCWD,"/lib/x86_64-linux-gnu/libc.so.6",O_RD
+ONLY|O_CLOEXEC
+ []
+
+
+Overfull \hbox (145.8605pt too wide) in paragraph at lines 379--379
+[]\T2B/cmtt/m/n/12 55679 mmap(0x74a03c048000,8192,PROT_READ|PROT_WRITE,MAP_PRIV
+ATE|MAP_FIXED|MAP_DENYWRITE,4,0x2b000
+ []
+
+
+Overfull \hbox (164.38098pt too wide) in paragraph at lines 379--379
+[]\T2B/cmtt/m/n/12 55680 <... read resumed>"\177ELF\2\1\1\3\0\0\0\0\0\0\0\0\3\0
+>\0\1\0\0\0\220\243\2\0\0\0\0\0"...,832)
+ []
+
+
+Overfull \hbox (170.55447pt too wide) in paragraph at lines 379--379
+[]\T2B/cmtt/m/n/12 55680 <... pread64 resumed>"\6\0\0\0\4\0\0\0@\0\0\0\0\0\0\0@
+\0\0\0\0\0\0\0@\0\0\0\0\0\0\0"...,784,64)
+ []
+
+
+Overfull \hbox (3.87018pt too wide) in paragraph at lines 379--379
+[]\T2B/cmtt/m/n/12 55679 openat(AT_FDCWD,"/lib/x86_64-linux-gnu/libc.so.6",O_RD
+ONLY|O_CLOEXEC
+ []
+
+
+Overfull \hbox (170.55447pt too wide) in paragraph at lines 379--379
+[]\T2B/cmtt/m/n/12 55680 <... pread64 resumed>"\6\0\0\0\4\0\0\0@\0\0\0\0\0\0\0@
+\0\0\0\0\0\0\0@\0\0\0\0\0\0\0"...,784,64)
+ []
+
+
+Overfull \hbox (164.38098pt too wide) in paragraph at lines 379--379
+[]\T2B/cmtt/m/n/12 55679 <... read resumed>"\177ELF\2\1\1\3\0\0\0\0\0\0\0\0\3\0
+>\0\1\0\0\0\220\243\2\0\0\0\0\0"...,832)
+ []
+
+
+Overfull \hbox (10.04367pt too wide) in paragraph at lines 379--379
+[]\T2B/cmtt/m/n/12 55680 mmap(NULL,2170256,PROT_READ,MAP_PRIVATE|MAP_DENYWRITE,
+3,0 <unfinished
+ []
+
+
+Overfull \hbox (170.55447pt too wide) in paragraph at lines 379--379
+[]\T2B/cmtt/m/n/12 55679 <... pread64 resumed>"\6\0\0\0\4\0\0\0@\0\0\0\0\0\0\0@
+\0\0\0\0\0\0\0@\0\0\0\0\0\0\0"...,784,64)
+ []
+
+
+Overfull \hbox (158.20749pt too wide) in paragraph at lines 379--379
+[]\T2B/cmtt/m/n/12 55680 mmap(0x731db2428000,1605632,PROT_READ|PROT_EXEC,MAP_PR
+IVATE|MAP_FIXED|MAP_DENYWRITE,3,0x28000
+ []
+
+[8]
+Overfull \hbox (96.47256pt too wide) in paragraph at lines 379--379
+[]\T2B/cmtt/m/n/12 55680 mmap(0x731db25b0000,323584,PROT_READ,MAP_PRIVATE|MAP_F
+IXED|MAP_DENYWRITE,3,0x1b0000
+ []
+
+
+Overfull \hbox (170.55447pt too wide) in paragraph at lines 379--379
+[]\T2B/cmtt/m/n/12 55679 <... pread64 resumed>"\6\0\0\0\4\0\0\0@\0\0\0\0\0\0\0@
+\0\0\0\0\0\0\0@\0\0\0\0\0\0\0"...,784,64)
+ []
+
+
+Overfull \hbox (10.04367pt too wide) in paragraph at lines 379--379
+[]\T2B/cmtt/m/n/12 55679 mmap(NULL,2170256,PROT_READ,MAP_PRIVATE|MAP_DENYWRITE,
+4,0 <unfinished
+ []
+
+
+Overfull \hbox (158.20749pt too wide) in paragraph at lines 379--379
+[]\T2B/cmtt/m/n/12 55680 mmap(0x731db25ff000,24576,PROT_READ|PROT_WRITE,MAP_PRI
+VATE|MAP_FIXED|MAP_DENYWRITE,3,0x1fe000
+ []
+
+
+Overfull \hbox (158.20749pt too wide) in paragraph at lines 379--379
+[]\T2B/cmtt/m/n/12 55679 mmap(0x74a03b828000,1605632,PROT_READ|PROT_EXEC,MAP_PR
+IVATE|MAP_FIXED|MAP_DENYWRITE,4,0x28000
+ []
+
+
+Overfull \hbox (121.16653pt too wide) in paragraph at lines 379--379
+[]\T2B/cmtt/m/n/12 55680 mmap(0x731db2605000,52624,PROT_READ|PROT_WRITE,MAP_PRI
+VATE|MAP_FIXED|MAP_ANONYMOUS,-1,0
+ []
+
+
+Overfull \hbox (96.47256pt too wide) in paragraph at lines 379--379
+[]\T2B/cmtt/m/n/12 55679 mmap(0x74a03b9b0000,323584,PROT_READ,MAP_PRIVATE|MAP_F
+IXED|MAP_DENYWRITE,4,0x1b0000
+ []
+
+
+Overfull \hbox (158.20749pt too wide) in paragraph at lines 379--379
+[]\T2B/cmtt/m/n/12 55679 mmap(0x74a03b9ff000,24576,PROT_READ|PROT_WRITE,MAP_PRI
+VATE|MAP_FIXED|MAP_DENYWRITE,4,0x1fe000
+ []
+
+
+Overfull \hbox (3.87018pt too wide) in paragraph at lines 379--379
+[]\T2B/cmtt/m/n/12 55680 openat(AT_FDCWD,"/lib/x86_64-linux-gnu/libm.so.6",O_RD
+ONLY|O_CLOEXEC
+ []
+
+
+Overfull \hbox (121.16653pt too wide) in paragraph at lines 379--379
+[]\T2B/cmtt/m/n/12 55679 mmap(0x74a03ba05000,52624,PROT_READ|PROT_WRITE,MAP_PRI
+VATE|MAP_FIXED|MAP_ANONYMOUS,-1,0
+ []
+
+
+Overfull \hbox (139.68701pt too wide) in paragraph at lines 379--379
+[]\T2B/cmtt/m/n/12 55680 <... read resumed>"\177ELF\2\1\1\3\0\0\0\0\0\0\0\0\3\0
+>\0\1\0\0\0\0\0\0\0\0\0\0\0"...,832)
+ []
+
+
+Overfull \hbox (3.87018pt too wide) in paragraph at lines 379--379
+[]\T2B/cmtt/m/n/12 55679 openat(AT_FDCWD,"/lib/x86_64-linux-gnu/libm.so.6",O_RD
+ONLY|O_CLOEXEC
+ []
+
+
+Overfull \hbox (40.91113pt too wide) in paragraph at lines 379--379
+[]\T2B/cmtt/m/n/12 55680 mmap(NULL,950296,PROT_READ,MAP_PRIVATE|MAP_DENYWRITE,3
+,0) = 0x731db2a95000[] 
+ []
+
+
+Overfull \hbox (152.034pt too wide) in paragraph at lines 379--379
+[]\T2B/cmtt/m/n/12 55680 mmap(0x731db2aa5000,520192,PROT_READ|PROT_EXEC,MAP_PRI
+VATE|MAP_FIXED|MAP_DENYWRITE,3,0x10000
+ []
+
+[9]
+Overfull \hbox (139.68701pt too wide) in paragraph at lines 379--379
+[]\T2B/cmtt/m/n/12 55679 <... read resumed>"\177ELF\2\1\1\3\0\0\0\0\0\0\0\0\3\0
+>\0\1\0\0\0\0\0\0\0\0\0\0\0"...,832)
+ []
+
+
+Overfull \hbox (90.29907pt too wide) in paragraph at lines 379--379
+[]\T2B/cmtt/m/n/12 55680 mmap(0x731db2b24000,360448,PROT_READ,MAP_PRIVATE|MAP_F
+IXED|MAP_DENYWRITE,3,0x8f000
+ []
+
+
+Overfull \hbox (145.8605pt too wide) in paragraph at lines 379--379
+[]\T2B/cmtt/m/n/12 55680 mmap(0x731db2b7c000,8192,PROT_READ|PROT_WRITE,MAP_PRIV
+ATE|MAP_FIXED|MAP_DENYWRITE,3,0xe7000
+ []
+
+
+Overfull \hbox (3.87018pt too wide) in paragraph at lines 379--379
+[]\T2B/cmtt/m/n/12 55679 mmap(NULL,950296,PROT_READ,MAP_PRIVATE|MAP_DENYWRITE,4
+,0 <unfinished
+ []
+
+
+Overfull \hbox (152.034pt too wide) in paragraph at lines 379--379
+[]\T2B/cmtt/m/n/12 55679 mmap(0x74a03bf43000,520192,PROT_READ|PROT_EXEC,MAP_PRI
+VATE|MAP_FIXED|MAP_DENYWRITE,4,0x10000
+ []
+
+
+Overfull \hbox (65.6051pt too wide) in paragraph at lines 379--379
+[]\T2B/cmtt/m/n/12 55680 mmap(NULL,8192,PROT_READ|PROT_WRITE,MAP_PRIVATE|MAP_AN
+ONYMOUS,-1,0 <unfinished
+ []
+
+
+Overfull \hbox (90.29907pt too wide) in paragraph at lines 379--379
+[]\T2B/cmtt/m/n/12 55679 mmap(0x74a03bfc2000,360448,PROT_READ,MAP_PRIVATE|MAP_F
+IXED|MAP_DENYWRITE,4,0x8f000
+ []
+
+
+Overfull \hbox (71.7786pt too wide) in paragraph at lines 379--379
+[]\T2B/cmtt/m/n/12 55680 mmap(NULL,12288,PROT_READ|PROT_WRITE,MAP_PRIVATE|MAP_A
+NONYMOUS,-1,0 <unfinished
+ []
+
+
+Overfull \hbox (145.8605pt too wide) in paragraph at lines 379--379
+[]\T2B/cmtt/m/n/12 55679 mmap(0x74a03c01a000,8192,PROT_READ|PROT_WRITE,MAP_PRIV
+ATE|MAP_FIXED|MAP_DENYWRITE,4,0xe7000
+ []
+
+
+Overfull \hbox (65.6051pt too wide) in paragraph at lines 379--379
+[]\T2B/cmtt/m/n/12 55679 mmap(NULL,8192,PROT_READ|PROT_WRITE,MAP_PRIVATE|MAP_AN
+ONYMOUS,-1,0 <unfinished
+ []
+
+
+Overfull \hbox (71.7786pt too wide) in paragraph at lines 379--379
+[]\T2B/cmtt/m/n/12 55679 mmap(NULL,12288,PROT_READ|PROT_WRITE,MAP_PRIVATE|MAP_A
+NONYMOUS,-1,0 <unfinished
+ []
+
+[10]
+Overfull \hbox (53.25812pt too wide) in paragraph at lines 379--379
+[]\T2B/cmtt/m/n/12 55680 prlimit64(0,RLIMIT_STACK,NULL,{rlim_cur=8192*1024,rlim
+_max=RLIM64_INFINITY})
+ []
+
+
+Overfull \hbox (40.91113pt too wide) in paragraph at lines 379--379
+[]\T2B/cmtt/m/n/12 55680 <... getrandom resumed>"\x26\x4a\x75\x16\x43\xa6\xb6\x
+db",8,GRND_NONBLOCK)
+ []
+
+
+Overfull \hbox (10.04367pt too wide) in paragraph at lines 379--379
+[]\T2B/cmtt/m/n/12 55679 <... prlimit64 resumed>{rlim_cur=8192*1024,rlim_max=RL
+IM64_INFINITY})
+ []
+
+
+Overfull \hbox (34.73764pt too wide) in paragraph at lines 379--379
+[]\T2B/cmtt/m/n/12 55680 <... openat resumed>)             = -1 ENOENT (No such
+ file or directory)[] 
+ []
+
+[11]
+Overfull \hbox (40.91113pt too wide) in paragraph at lines 379--379
+[]\T2B/cmtt/m/n/12 55679 <... getrandom resumed>"\x59\xeb\x70\x5f\x8b\x9e\xc0\x
+6e",8,GRND_NONBLOCK)
+ []
+
+
+Overfull \hbox (65.6051pt too wide) in paragraph at lines 379--379
+[]\T2B/cmtt/m/n/12 55532 <... wait4 resumed>NULL,0,NULL) = ? ERESTARTSYS (To be
+ restarted if SA_RESTART
+ []
+
+
+Overfull \hbox (34.73764pt too wide) in paragraph at lines 379--379
+[]\T2B/cmtt/m/n/12 55679 <... openat resumed>)             = -1 ENOENT (No such
+ file or directory)[] 
+ []
+
+
+Overfull \hbox (244.63638pt too wide) in paragraph at lines 379--379
+[]\T2B/cmtt/m/n/12 55532 ---SIGCHLD {si_signo=SIGCHLD,si_code=CLD_EXITED,si_pid
+=55680,si_uid=1000,si_status=0,si_utime=0,si_stime=0}
+ []
+
+
+Overfull \hbox (244.63638pt too wide) in paragraph at lines 379--379
+[]\T2B/cmtt/m/n/12 55532 ---SIGCHLD {si_signo=SIGCHLD,si_code=CLD_EXITED,si_pid
+=55679,si_uid=1000,si_status=0,si_utime=0,si_stime=0}
+ []
+
+) [12] (./report.aux)
  ***********
 LaTeX2e <2023-11-01> patch level 1
 L3 programming layer <2024-01-22>
  ***********
-
-
-Package rerunfilecheck Warning: File `report.out' has changed.
-(rerunfilecheck)                Rerun to get outlines right
-(rerunfilecheck)                or use package `bookmark'.
-
-Package rerunfilecheck Info: Checksums for `report.out':
-(rerunfilecheck)             Before: 481B2BC399C31EEA25D20A2F07E85D27;652
-(rerunfilecheck)             After:  FBF6DC91CC6CEA06AAA3D8462E18C40E;1012.
  ) 
 Here is how much of TeX's memory you used:
- 18691 strings out of 474222
- 292368 string characters out of 5748733
- 1930975 words of memory out of 5000000
- 40631 multiletter control sequences out of 15000+600000
- 574152 words of font info for 56 fonts, out of 8000000 for 9000
+ 20865 strings out of 474222
+ 331401 string characters out of 5748733
+ 1942975 words of memory out of 5000000
+ 42769 multiletter control sequences out of 15000+600000
+ 574548 words of font info for 58 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 90i,7n,109p,555b,546s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 90i,7n,109p,1003b,1417s stack positions out of 10000i,1000n,20000p,200000b,200000s
 </usr/share/texlive/texmf-dist/fonts/type1/public/tempora/Tempora-Bold.pfb></
 usr/share/texlive/texmf-dist/fonts/type1/public/tempora/Tempora-Regular.pfb></u
 sr/share/texmf/fonts/type1/public/cm-super/sftt1200.pfb>
-Output written on report.pdf (4 pages, 96393 bytes).
+Output written on report.pdf (13 pages, 114469 bytes).
 PDF statistics:
- 66 PDF objects out of 1000 (max. 8388607)
- 53 compressed objects within 1 object stream
- 11 named destinations out of 1000 (max. 500000)
- 41 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 113 PDF objects out of 1000 (max. 8388607)
+ 91 compressed objects within 1 object stream
+ 20 named destinations out of 1000 (max. 500000)
+ 3641 words of extra memory for PDF output out of 10000 (max. 10000000)
 
