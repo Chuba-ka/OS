@@ -1,6 +1,4 @@
-// ArrayManager.h
-#ifndef ARRAY_MANAGER_H
-#define ARRAY_MANAGER_H
+#pragma once
 
 #include <vector>
 
@@ -17,5 +15,3 @@ public:
     const std::vector<std::vector<double>> &getArrays() const;
     int getLength() const;
 };
-
-#endif // ARRAY_MANAGER_H

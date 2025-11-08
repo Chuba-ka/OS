@@ -1,6 +1,4 @@
-// ParallelSummer.h
-#ifndef PARALLEL_SUMMER_H
-#define PARALLEL_SUMMER_H
+#pragma once
 
 #include <vector>
 #include <pthread.h>
@@ -31,5 +29,3 @@ public:
     void sumArrays();
     const std::vector<double> &getResult() const;
 };
-
-#endif // PARALLEL_SUMMER_H
