@@ -1,4 +1,3 @@
-// main.cpp — Автоматический бенчмарк с записью в CSV
 #include <iostream>
 #include <fstream>
 #include <vector>

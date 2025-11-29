@@ -1,4 +1,3 @@
-// include/mapped_file.hpp
 #pragma once
 
 #include <string>

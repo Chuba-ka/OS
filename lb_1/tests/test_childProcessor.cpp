@@ -1,7 +1,6 @@
 #include <gtest/gtest.h>
 #include "childProcessor.hpp"
 
-// Тесты для класса ChildProcessor
 TEST(ChildProcessorTest, RemoveVowelsBasic)
 {
     ChildProcessor processor;

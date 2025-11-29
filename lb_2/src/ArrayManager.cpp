@@ -1,4 +1,3 @@
-// ArrayManager.cpp
 #include "ArrayManager.h"
 #include <cstdlib>
 

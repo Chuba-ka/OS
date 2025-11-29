@@ -1,4 +1,3 @@
-// ParallelSummer.cpp
 #include "ParallelSummer.h"
 #include <iostream>
 #include <algorithm>
