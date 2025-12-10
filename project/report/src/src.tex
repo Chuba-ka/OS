@@ -1,0 +1,60 @@
+\section{Метод решения}
+
+Для решения задачи выбрана архитектура на основе POSIX shared memory с использованием единого объекта разделяемой памяти, к которому подключаются один сервер и произвольное количество клиентов. Все процессы отображают в своё адресное пространство один и тот же файл объекта памяти с именем \texttt{/simple\_chat\_shm\_v1}.
+
+В разделяемой памяти размещена структура \texttt{SharedData}, содержащая:
+\begin{itemize}
+  \item мьютекс и условную переменную с атрибутом \texttt{PTHREAD\_PROCESS\_SHARED};
+  \item массив до 16 зарегистрированных логинов;
+  \item кольцевой буфер на 1024 сообщения;
+  \item текущий индекс записи \texttt{msg\_write\_index} и флаг завершения работы сервера.
+\end{itemize}
+
+Отправка сообщения выполняется атомарно: клиент захватывает мьютекс, записывает сообщение в следующую ячейку буфера, увеличивает индекс и вызывает \texttt{pthread\_cond\_broadcast()}.  
+Доставка в реальном времени реализована через отдельный поток в каждом клиенте: он ждёт на условной переменной, при пробуждении сканирует весь буфер, выводит новые сообщения для своего логина и помечает их как доставленные.
+
+Хранение истории и поиск выполняются только на сервере. Поток-монитор сервера сохраняет непомеченные сообщения в файл \texttt{history.txt}. Поиск доступен через серверную команду \texttt{search}.
+
+Архитектура работает исключительно в пределах одной машины, но обеспечивает минимальную задержку и простоту реализации.
+
+
+
+\section{Описание программы}
+
+Программа состоит из трёх файлов:
+
+\begin{description}
+  \item[\texttt{common.h}] содержит общие определения:
+  \begin{itemize}
+    \item константы \texttt{MAX\_CLIENTS = 16}, \texttt{MAX\_MESSAGES = 1024}, длины полей;
+    \item структуру \texttt{Message} (отправитель, получатель, текст, timestamp, флаги \texttt{saved} и \texttt{delivered});
+    \item структуру \texttt{SharedData} — полное описание разделяемой памяти.
+  \end{itemize}
+
+  \item[\texttt{server.cpp}] реализует сервер:
+  \begin{itemize}
+    \item создаёт/открывает объект разделяемой памяти (\texttt{shm\_open}, \texttt{ftruncate}, \texttt{mmap});
+    \item инициализирует мьютекс и условную переменную для межпроцессного использования;
+    \item запускает поток, сохраняющий историю в \texttt{history.txt};
+    \item предоставляет консольные команды \texttt{list\_clients}, \texttt{search <user1> <user2> [keyword]}, \texttt{exit};
+    \item обрабатывает SIGINT для корректного завершения.
+  \end{itemize}
+
+  \item[\texttt{client.cpp}] реализует клиент:
+  \begin{itemize}
+    \item подключается к существующей разделяемой памяти (\texttt{shm\_open}, \texttt{mmap});
+    \item регистрирует введённый логин;
+    \item создаёт отдельный поток для приёма сообщений;
+    \item в основном потоке обрабатывает команды \texttt{send <login> <text>} и \texttt{exit}.
+  \end{itemize}
+\end{description}
+
+Основные использованные системные вызовы и функции:
+\begin{itemize}
+  \item \texttt{shm\_open()}, \texttt{ftruncate()}, \texttt{mmap()}, \texttt{munmap()}
+  \item \texttt{pthread\_mutexattr\_setpshared()}, \texttt{pthread\_condattr\_setpshared()}
+  \item \texttt{pthread\_mutex\_lock/unlock()}, \texttt{pthread\_cond\_wait()}, \texttt{pthread\_cond\_broadcast()}
+  \item \texttt{sigaction()} для обработки SIGINT
+\end{itemize}
+
+Сетевая подсистема не используется — вся коммуникация осуществляется только через разделяемую память.
