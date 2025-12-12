@@ -1,0 +1,163 @@
+\section*{}
+\addcontentsline{toc}{section}{Лабораторная работа №3}
+
+\begin{center}
+\bfseries
+\large
+Лабораторная работа \textnumero 3 
+
+\vspace{12pt}
+
+\end{center}
+\section{Условие}
+        Родительский процесс создает два дочерних процесса. Первой строкой пользователь в консоль
+родительского процесса вводит имя файла, которое будет использовано как отображаемый в память файл
+для взаимодействия с child1. Аналогично для второй строки и процесса child2. Родительский 
+и дочерний процессы представлены разными исполняемыми файлами. Родительский процесс принимает от пользователя строки произвольной длины и записывает их в
+соответствующую область отображаемой памяти в зависимости от правила фильтрации. Процессы child1 и child2 читают данные из своих отображаемых файлов, обрабатывают строки и записывают результаты в файлы с суффиксом .out.
+
+\subsection*{Цель работы}
+        Изучение механизмов создания процессов, организации межпроцессного взаимодействия через отображаемые в память файлы (memory-mapped files) и обработки данных в многопроцессной архитектуре.
+
+\subsection*{Задание}
+    Правило фильтрации: строки длины больше 10 отправляются в отображаемый файл для child2, длиной 10 и менее — для child1.
+    Дочерние процессы удаляют все гласные из строк.
+
+\subsection*{Вариант}17
+\section{Метод решения}
+Данная программа реализует многопроцессную обработку текстовых данных с использованием отображаемых в память файлов (memory-mapped files) для межпроцессного взаимодействия.
+Основной алгоритм: родительский процесс читает строки из стандартного ввода и записывает строки длиной больше 10 символов во второй отображаемый файл, длиной 10 и менее — в первый. Каждый дочерний процесс читает данные из своего отображаемого файла, удаляет все гласные из строк и записывает результат в файл с суффиксом .out.
+
+Ключевые компоненты:\\
+MappedFile — обёртка над системными вызовами mmap, munmap, open, ftruncate\\
+ChildProcess — логика работы дочернего процесса\\
+ChildProcessor — удаление гласных букв\\
+\\
+Системные вызовы:\\
+Linux: mmap, munmap, open, ftruncate, fork, execl\\
+\\
+Программа использует объектно-ориентированный подход с инкапсуляцией.
+
+\section{Описание программы}
+Программа реализует многопроцессную обработку текстовых данных через отображаемые в память файлы. \\
+Родительский процесс читает строки из стандартного ввода и распределяет их между двумя дочерними процессами по правилу длины. \\
+Каждый дочерний процесс удаляет все гласные буквы и записывает результат в файл с суффиксом .out и в стандартный вывод.\\
+\\
+Программа состоит из двух исполняемых файлов: \texttt{parent} и \texttt{child}. \\
+\texttt{parent} (\texttt{src/parent.cpp}) — родительский процесс: \\
+создаёт отображаемые файлы (\texttt{MappedFile}), порождает дочерние процессы (\texttt{fork/execl}), \\
+считывает строки и записывает их в соответствующую область памяти. \\
+\texttt{child} (\texttt{src/child.cpp}) — точка входа дочернего процесса: \\
+через \texttt{ChildProcess} опрашивает отображаемую память, \\
+удаляет гласные с помощью \texttt{ChildProcessor} \\
+и записывает результат в файл и на экран.
+
+\section{Системные вызовы}
+\begin{verbatim}
+37936 execve("./parent", ["./parent"], 0x7ffc9d70ab98 /* 37 vars */) = 0
+37936 brk(NULL)                         = 0x642acffaa000
+37936 mmap(NULL, 8192, PROT_READ|PROT_WRITE, MAP_PRIVATE|MAP_ANONYMOUS, -1, 0) = 0x7fab9c263000
+37936 access("/etc/ld.so.preload", R_OK) = -1 ENOENT (No such file or directory)
+37936 openat(AT_FDCWD, "/etc/ld.so.cache", O_RDONLY|O_CLOEXEC) = 3
+37936 fstat(3, {st_mode=S_IFREG|0644, st_size=31547, ...}) = 0
+37936 mmap(NULL, 31547, PROT_READ, MAP_PRIVATE, 3, 0) = 0x7fab9c25b000
+37936 close(3)                          = 0
+37936 openat(AT_FDCWD, "/lib/x86_64-linux-gnu/libstdc++.so.6", O_RDONLY|O_CLOEXEC) = 3
+37936 read(3, "\177ELF\2\1\1\3\0\0\0\0\0\0\0\0\3\0>\0\1\0\0\0\0\0\0\0\0\0\0\0"..., 832) = 832
+37936 fstat(3, {st_mode=S_IFREG|0644, st_size=2592224, ...}) = 0
+37936 mmap(NULL, 2609472, PROT_READ, MAP_PRIVATE|MAP_DENYWRITE, 3, 0) = 0x7fab9be00000
+37936 mmap(0x7fab9be9d000, 1343488, PROT_READ|PROT_EXEC, MAP_PRIVATE|MAP_FIXED|MAP_DENYWRITE, 3, 0x9d000) = 0x7fab9be9d000
+37936 mmap(0x7fab9bfe5000, 552960, PROT_READ, MAP_PRIVATE|MAP_FIXED|MAP_DENYWRITE, 3, 0x1e5000) = 0x7fab9bfe5000
+37936 mmap(0x7fab9c06c000, 57344, PROT_READ|PROT_WRITE, MAP_PRIVATE|MAP_FIXED|MAP_DENYWRITE, 3, 0x26b000) = 0x7fab9c06c000
+37936 mmap(0x7fab9c07a000, 12608, PROT_READ|PROT_WRITE, MAP_PRIVATE|MAP_FIXED|MAP_ANONYMOUS, -1, 0) = 0x7fab9c07a000
+37936 close(3)                          = 0
+37936 openat(AT_FDCWD, "/lib/x86_64-linux-gnu/libgcc_s.so.1", O_RDONLY|O_CLOEXEC) = 3
+37936 read(3, "\177ELF\2\1\1\0\0\0\0\0\0\0\0\0\3\0>\0\1\0\0\0\0\0\0\0\0\0\0\0"..., 832) = 832
+37936 fstat(3, {st_mode=S_IFREG|0644, st_size=183024, ...}) = 0
+37936 mmap(NULL, 185256, PROT_READ, MAP_PRIVATE|MAP_DENYWRITE, 3, 0) = 0x7fab9c22d000
+37936 mmap(0x7fab9c231000, 147456, PROT_READ|PROT_EXEC, MAP_PRIVATE|MAP_FIXED|MAP_DENYWRITE, 3, 0x4000) = 0x7fab9c231000
+37936 mmap(0x7fab9c255000, 16384, PROT_READ, MAP_PRIVATE|MAP_FIXED|MAP_DENYWRITE, 3, 0x28000) = 0x7fab9c255000
+37936 mmap(0x7fab9c259000, 8192, PROT_READ|PROT_WRITE, MAP_PRIVATE|MAP_FIXED|MAP_DENYWRITE, 3, 0x2b000) = 0x7fab9c259000
+37936 close(3)                          = 0
+37936 openat(AT_FDCWD, "/lib/x86_64-linux-gnu/libc.so.6", O_RDONLY|O_CLOEXEC) = 3
+37936 read(3, "\177ELF\2\1\1\3\0\0\0\0\0\0\0\0\3\0>\0\1\0\0\0\220\243\2\0\0\0\0\0"..., 832) = 832
+37936 pread64(3, "\6\0\0\0\4\0\0\0@\0\0\0\0\0\0\0@\0\0\0\0\0\0\0@\0\0\0\0\0\0\0"..., 784, 64) = 784
+37936 fstat(3, {st_mode=S_IFREG|0755, st_size=2125328, ...}) = 0
+37936 pread64(3, "\6\0\0\0\4\0\0\0@\0\0\0\0\0\0\0@\0\0\0\0\0\0\0@\0\0\0\0\0\0\0"..., 784, 64) = 784
+37936 mmap(NULL, 2170256, PROT_READ, MAP_PRIVATE|MAP_DENYWRITE, 3, 0) = 0x7fab9ba00000
+37936 mmap(0x7fab9ba28000, 1605632, PROT_READ|PROT_EXEC, MAP_PRIVATE|MAP_FIXED|MAP_DENYWRITE, 3, 0x28000) = 0x7fab9ba28000
+37936 mmap(0x7fab9bbb0000, 323584, PROT_READ, MAP_PRIVATE|MAP_FIXED|MAP_DENYWRITE, 3, 0x1b0000) = 0x7fab9bbb0000
+37936 mmap(0x7fab9bbff000, 24576, PROT_READ|PROT_WRITE, MAP_PRIVATE|MAP_FIXED|MAP_DENYWRITE, 3, 0x1fe000) = 0x7fab9bbff000
+37936 mmap(0x7fab9bc05000, 52624, PROT_READ|PROT_WRITE, MAP_PRIVATE|MAP_FIXED|MAP_ANONYMOUS, -1, 0) = 0x7fab9bc05000
+37936 close(3)                          = 0
+37936 openat(AT_FDCWD, "/lib/x86_64-linux-gnu/libm.so.6", O_RDONLY|O_CLOEXEC) = 3
+37936 read(3, "\177ELF\2\1\1\3\0\0\0\0\0\0\0\0\3\0>\0\1\0\0\0\0\0\0\0\0\0\0\0"..., 832) = 832
+37936 fstat(3, {st_mode=S_IFREG|0644, st_size=952616, ...}) = 0
+37936 mmap(NULL, 950296, PROT_READ, MAP_PRIVATE|MAP_DENYWRITE, 3, 0) = 0x7fab9c144000
+37936 mmap(0x7fab9c154000, 520192, PROT_READ|PROT_EXEC, MAP_PRIVATE|MAP_FIXED|MAP_DENYWRITE, 3, 0x10000) = 0x7fab9c154000
+37936 mmap(0x7fab9c1d3000, 360448, PROT_READ, MAP_PRIVATE|MAP_FIXED|MAP_DENYWRITE, 3, 0x8f000) = 0x7fab9c1d3000
+37936 mmap(0x7fab9c22b000, 8192, PROT_READ|PROT_WRITE, MAP_PRIVATE|MAP_FIXED|MAP_DENYWRITE, 3, 0xe7000) = 0x7fab9c22b000
+37936 close(3)                          = 0
+37936 mmap(NULL, 8192, PROT_READ|PROT_WRITE, MAP_PRIVATE|MAP_ANONYMOUS, -1, 0) = 0x7fab9c142000
+37936 mmap(NULL, 12288, PROT_READ|PROT_WRITE, MAP_PRIVATE|MAP_ANONYMOUS, -1, 0) = 0x7fab9c13f000
+37936 arch_prctl(ARCH_SET_FS, 0x7fab9c13f740) = 0
+37936 set_tid_address(0x7fab9c13fa10)   = 37936
+37936 set_robust_list(0x7fab9c13fa20, 24) = 0
+37936 rseq(0x7fab9c140060, 0x20, 0, 0x53053053) = 0
+37936 mprotect(0x7fab9bbff000, 16384, PROT_READ) = 0
+37936 mprotect(0x7fab9c22b000, 4096, PROT_READ) = 0
+37936 mprotect(0x7fab9c259000, 4096, PROT_READ) = 0
+37936 mprotect(0x7fab9c06c000, 45056, PROT_READ) = 0
+37936 mprotect(0x642ab5fba000, 4096, PROT_READ) = 0
+37936 mprotect(0x7fab9c29b000, 8192, PROT_READ) = 0
+37936 prlimit64(0, RLIMIT_STACK, NULL, {rlim_cur=8192*1024, rlim_max=RLIM64_INFINITY}) = 0
+37936 munmap(0x7fab9c25b000, 31547)     = 0
+37936 futex(0x7fab9c07a7bc, FUTEX_WAKE_PRIVATE, 2147483647) = 0
+37936 getrandom("\x22\xc6\x6c\x7d\x8f\xb9\xc8\x61", 8, GRND_NONBLOCK) = 8
+37936 brk(NULL)                         = 0x642acffaa000
+37936 brk(0x642acffcb000)               = 0x642acffcb000
+37936 fstat(0, {st_mode=S_IFREG|0644, st_size=53, ...}) = 0
+37936 read(0, "short.txt\nlong.txt\nhello\nthis is"..., 4096) = 53
+37936 openat(AT_FDCWD, "short.txt", O_RDWR|O_CREAT|O_TRUNC, 0666) = 3
+37936 ftruncate(3, 4096)                = 0
+37936 mmap(NULL, 4096, PROT_READ|PROT_WRITE, MAP_SHARED, 3, 0) = 0x7fab9c262000
+37936 openat(AT_FDCWD, "long.txt", O_RDWR|O_CREAT|O_TRUNC, 0666) = 4
+37936 ftruncate(4, 4096)                = 0
+37936 mmap(NULL, 4096, PROT_READ|PROT_WRITE, MAP_SHARED, 4, 0) = 0x7fab9c261000
+37936 clone(child_stack=NULL, flags=CLONE_CHILD_CLEARTID|CLONE_CHILD_SETTID|SIGCHLD, child_tidptr=0x7fab9c13fa10) = 37937
+37937 set_robust_list(0x7fab9c13fa20, 24 <unfinished ...>
+37936 clone(child_stack=NULL, flags=CLONE_CHILD_CLEARTID|CLONE_CHILD_SETTID|SIGCHLD <unfinished ...>
+37937 <... set_robust_list resumed>)    = 0
+37937 execve("./bin/child", ["child", "short.txt"], 0x7ffebc19a158 /* 37 vars */ <unfinished ...>
+37936 <... clone resumed>, child_tidptr=0x7fab9c13fa10) = 37938
+37938 set_robust_list(0x7fab9c13fa20, 24 <unfinished ...>
+37937 <... execve resumed>)             = -1 ENOENT (No such file or directory)
+37938 <... set_robust_list resumed>)    = 0
+37936 clock_nanosleep(CLOCK_REALTIME, 0, {tv_sec=1, tv_nsec=0},  <unfinished ...>
+37938 execve("./bin/child", ["child", "long.txt"], 0x7ffebc19a158 /* 37 vars */ <unfinished ...>
+37937 write(2, "Exec failed for child1", 22 <unfinished ...>
+37938 <... execve resumed>)             = -1 ENOENT (No such file or directory)
+37937 <... write resumed>)              = 22
+37937 write(2, "\n", 1 <unfinished ...>
+37938 write(2, "Exec failed for child2", 22) = 22
+37937 <... write resumed>)              = 1
+37937 exit_group(1 <unfinished ...>
+37938 write(2, "\n", 1 <unfinished ...>
+37937 <... exit_group resumed>)         = ?
+37938 <... write resumed>)              = 1
+37938 exit_group(1 <unfinished ...>
+37937 +++ exited with 1 +++
+37938 <... exit_group resumed>)         = ?
+37936 <... clock_nanosleep resumed>{tv_sec=0, tv_nsec=999369899}) = ? ERESTART_RESTARTBLOCK (Interrupted by signal)
+37936 --- SIGCHLD {si_signo=SIGCHLD, si_code=CLD_EXITED, si_pid=37937, si_uid=1000, si_status=1, si_utime=0, si_stime=0} ---
+37938 +++ exited with 1 +++
+37936 --- SIGCHLD {si_signo=SIGCHLD, si_code=CLD_EXITED, si_pid=37938, si_uid=1000, si_status=1, si_utime=0, si_stime=0} ---
+37936 restart_syscall(<... resuming interrupted clock_nanosleep ...>) = 0
+37936 read(0, "", 4096)                 = 0
+37936 clock_nanosleep(CLOCK_REALTIME, 0, {tv_sec=0, tv_nsec=1000000}, NULL) = 0
+\end{verbatim} 
+\section{Выводы}
+
+В ходе лабораторной работы успешно разработана многопроцессная система обработки текстовых данных с использованием межпроцессного взаимодействия через отображаемые в память файлы (memory-mapped files). Программа демонстрирует корректную работу на Unix-системах.
+
+\pagebreak

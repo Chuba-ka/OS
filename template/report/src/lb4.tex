@@ -1,0 +1,236 @@
+\section*{}
+\addcontentsline{toc}{section}{Лабораторная работа №4}
+
+\begin{center}
+\bfseries
+\large
+Лабораторная работа \textnumero 4 
+
+\vspace{12pt}
+
+\end{center}
+\section{Условие}
+
+Требуется реализовать вычисление приближённых значений чисел $\pi$ и $e$ двумя различными численными методами с использованием динамических библиотек и двух способов их подключения.
+
+\subsection*{Цель работы}
+Изучение механизмов создания и использования динамических библиотек в Linux, освоение статической и динамической линковки, применение объектно-ориентированного подхода при проектировании интерфейсов подключаемых модулей.
+
+\subsection*{Задание}
+Создать две динамические библиотеки, каждая из которых реализует два алгоритма:
+
+\begin{itemize}
+    \item Вычисление числа $\pi$ по заданному количеству членов ряда $K$:
+    \begin{itemize}
+        \item Ряд Лейбница: $\pi/4 = 1 - 1/3 + 1/5 - 1/7 + \dots$
+        \item Формула (произведение) Валлиса
+    \end{itemize}
+    
+    \item Вычисление числа $e$ по заданному параметру $x$:
+    \begin{itemize}
+        \item Формула предела: $e = \lim\limits_{x \to \infty} \left(1 + \frac{1}{x}\right)^x$
+        \item Сумма ряда Тейлора: $e = \sum\limits_{n=0}^{x} \frac{1}{n!}$
+    \end{itemize}
+\end{itemize}
+
+Реализовать две тестовые программы:
+\begin{itemize}
+    \item Программа №1 — использует одну из библиотек через статическую линковку на этапе компиляции
+    \item Программа №2 — загружает библиотеки во время выполнения по относительным путям с помощью \texttt{dlopen}/\texttt{dlsym}, поддерживает переключение между реализациями по команде 0
+\end{itemize}
+
+Интерактивный ввод в обеих программах:
+\begin{itemize}
+    \item \texttt{1 arg1 arg2 $\dots$ argN} $\;\to\;$ вычисление $\pi$ с $K = \text{arg1}$
+    \item \texttt{2 arg1 arg2 $\dots$ argM} $\;\to\;$ вычисление $e$ с $x = \text{arg1}$
+    \item \texttt{0} $\;\to\;$ выход (в статической версии) или смена активной библиотеки (в динамической)
+\end{itemize}
+
+\subsection*{Вариант 25}
+\section{Метод решения}
+
+Программа решает задачу приближённого вычисления чисел $\pi$ и $e$ с использованием динамических библиотек и двух способов их подключения.
+
+Применён объектно-ориентированный подход:
+\begin{itemize}
+    \item определены два абстрактных интерфейса — \texttt{PiCalculator} и \texttt{ECalculator};
+    \item конкретные алгоритмы реализованы как классы-наследники этих интерфейсов.
+\end{itemize}
+
+Созданы две динамические библиотеки:
+\begin{itemize}
+    \item \texttt{lib1.so} — ряд Лейбница для $\pi$ и предел $(1 + 1/x)^x$ для $e$;
+    \item \texttt{lib2.so} — произведение Валлиса для $\pi$ и ряд Тейлора $\sum_{n=0}^{x} 1/n!$ для $e$.
+\end{itemize}
+
+Для корректной динамической загрузки в каждой библиотеке реализованы четыре функции с привязкой \texttt{extern "C"}:
+\texttt{create\_pi()}, \texttt{create\_e()}, \texttt{destroy\_pi()}, \texttt{destroy\_e()}.
+
+Программа №1 использует одну из библиотек через статическую линковку на этапе компиляции.
+
+Программа №2 загружает библиотеки во время выполнения с помощью \texttt{dlopen} по относительным путям \texttt{./lib1.so} и \texttt{./lib2.so}, получает указатели на функции через \texttt{dlsym} и управляет временем жизни объектов полиморфно. Переключение между парами реализаций происходит мгновенно по команде \texttt{0}.
+
+Ввод реализован так: после команды \texttt{1} или \texttt{2} может следовать произвольное количество аргументов, используется только первый из них.
+
+Сборка проекта выполняется с помощью системы CMake.
+
+\section{Описание программы}
+
+Проект состоит из двух исполняемых файлов и двух динамических библиотек:
+
+\begin{itemize}
+    \item \texttt{static\_app} — программа №1 \\
+          статическая линковка с одной из библиотек, \\
+          завершение работы по команде \texttt{0}
+
+    \item \texttt{dynamic\_app} — программа №2 \\
+          динамическая загрузка библиотек, \\
+          переключение между реализациями по команде \texttt{0}, \\
+          вывод названия текущего метода
+
+    \item \texttt{lib1.so} и \texttt{lib2.so} — динамические библиотеки \\
+          каждая содержит две реализации ($\pi$ и $e$), \\
+          экспортируют единый интерфейс через функции \texttt{create\_*}/\texttt{destroy\_*}, \\
+          компилируются с флагами \texttt{-shared -fPIC}
+\end{itemize}
+\section{Системные вызовы}
+\begin{verbatim}
+strace: must have PROG [ARGS] or -p PID
+Try 'strace -h' for more information.
+
+execve("./dynamic_app", ["./dynamic_app"], 0x7ffc16deaf98 /* 37 vars */) = 0
+brk(NULL)                               = 0x6483231b4000
+mmap(NULL, 8192, PROT_READ|PROT_WRITE, MAP_PRIVATE|MAP_ANONYMOUS, -1, 0) = 0x70278ba2d000
+access("/etc/ld.so.preload", R_OK)      = -1 ENOENT (No such file or directory)
+openat(AT_FDCWD, "/etc/ld.so.cache", O_RDONLY|O_CLOEXEC) = 3
+fstat(3, {st_mode=S_IFREG|0644, st_size=31547, ...}) = 0
+mmap(NULL, 31547, PROT_READ, MAP_PRIVATE, 3, 0) = 0x70278ba25000
+close(3)                                = 0
+openat(AT_FDCWD, "/lib/x86_64-linux-gnu/libstdc++.so.6", O_RDONLY|O_CLOEXEC) = 3
+read(3, "\177ELF\2\1\1\3\0\0\0\0\0\0\0\0\3\0>\0\1\0\0\0\0\0\0\0\0\0\0\0"..., 832) = 832
+fstat(3, {st_mode=S_IFREG|0644, st_size=2592224, ...}) = 0
+mmap(NULL, 2609472, PROT_READ, MAP_PRIVATE|MAP_DENYWRITE, 3, 0) = 0x70278b600000
+mmap(0x70278b69d000, 1343488, PROT_READ|PROT_EXEC, MAP_PRIVATE|MAP_FIXED|MAP_DENYWRITE, 3, 0x9d000) = 0x70278b69d000
+mmap(0x70278b7e5000, 552960, PROT_READ, MAP_PRIVATE|MAP_FIXED|MAP_DENYWRITE, 3, 0x1e5000) = 0x70278b7e5000
+mmap(0x70278b86c000, 57344, PROT_READ|PROT_WRITE, MAP_PRIVATE|MAP_FIXED|MAP_DENYWRITE, 3, 0x26b000) = 0x70278b86c000
+mmap(0x70278b87a000, 12608, PROT_READ|PROT_WRITE, MAP_PRIVATE|MAP_FIXED|MAP_ANONYMOUS, -1, 0) = 0x70278b87a000
+close(3)                                = 0
+openat(AT_FDCWD, "/lib/x86_64-linux-gnu/libgcc_s.so.1", O_RDONLY|O_CLOEXEC) = 3
+read(3, "\177ELF\2\1\1\0\0\0\0\0\0\0\0\0\3\0>\0\1\0\0\0\0\0\0\0\0\0\0\0"..., 832) = 832
+fstat(3, {st_mode=S_IFREG|0644, st_size=183024, ...}) = 0
+mmap(NULL, 185256, PROT_READ, MAP_PRIVATE|MAP_DENYWRITE, 3, 0) = 0x70278b9f7000
+mmap(0x70278b9fb000, 147456, PROT_READ|PROT_EXEC, MAP_PRIVATE|MAP_FIXED|MAP_DENYWRITE, 3, 0x4000) = 0x70278b9fb000
+mmap(0x70278ba1f000, 16384, PROT_READ, MAP_PRIVATE|MAP_FIXED|MAP_DENYWRITE, 3, 0x28000) = 0x70278ba1f000
+mmap(0x70278ba23000, 8192, PROT_READ|PROT_WRITE, MAP_PRIVATE|MAP_FIXED|MAP_DENYWRITE, 3, 0x2b000) = 0x70278ba23000
+close(3)                                = 0
+openat(AT_FDCWD, "/lib/x86_64-linux-gnu/libc.so.6", O_RDONLY|O_CLOEXEC) = 3
+read(3, "\177ELF\2\1\1\3\0\0\0\0\0\0\0\0\3\0>\0\1\0\0\0\220\243\2\0\0\0\0\0"..., 832) = 832
+pread64(3, "\6\0\0\0\4\0\0\0@\0\0\0\0\0\0\0@\0\0\0\0\0\0\0@\0\0\0\0\0\0\0"..., 784, 64) = 784
+fstat(3, {st_mode=S_IFREG|0755, st_size=2125328, ...}) = 0
+pread64(3, "\6\0\0\0\4\0\0\0@\0\0\0\0\0\0\0@\0\0\0\0\0\0\0@\0\0\0\0\0\0\0"..., 784, 64) = 784
+mmap(NULL, 2170256, PROT_READ, MAP_PRIVATE|MAP_DENYWRITE, 3, 0) = 0x70278b200000
+mmap(0x70278b228000, 1605632, PROT_READ|PROT_EXEC, MAP_PRIVATE|MAP_FIXED|MAP_DENYWRITE, 3, 0x28000) = 0x70278b228000
+mmap(0x70278b3b0000, 323584, PROT_READ, MAP_PRIVATE|MAP_FIXED|MAP_DENYWRITE, 3, 0x1b0000) = 0x70278b3b0000
+mmap(0x70278b3ff000, 24576, PROT_READ|PROT_WRITE, MAP_PRIVATE|MAP_FIXED|MAP_DENYWRITE, 3, 0x1fe000) = 0x70278b3ff000
+mmap(0x70278b405000, 52624, PROT_READ|PROT_WRITE, MAP_PRIVATE|MAP_FIXED|MAP_ANONYMOUS, -1, 0) = 0x70278b405000
+close(3)                                = 0
+openat(AT_FDCWD, "/lib/x86_64-linux-gnu/libm.so.6", O_RDONLY|O_CLOEXEC) = 3
+read(3, "\177ELF\2\1\1\3\0\0\0\0\0\0\0\0\3\0>\0\1\0\0\0\0\0\0\0\0\0\0\0"..., 832) = 832
+fstat(3, {st_mode=S_IFREG|0644, st_size=952616, ...}) = 0
+mmap(NULL, 950296, PROT_READ, MAP_PRIVATE|MAP_DENYWRITE, 3, 0) = 0x70278b90e000
+mmap(0x70278b91e000, 520192, PROT_READ|PROT_EXEC, MAP_PRIVATE|MAP_FIXED|MAP_DENYWRITE, 3, 0x10000) = 0x70278b91e000
+mmap(0x70278b99d000, 360448, PROT_READ, MAP_PRIVATE|MAP_FIXED|MAP_DENYWRITE, 3, 0x8f000) = 0x70278b99d000
+mmap(0x70278b9f5000, 8192, PROT_READ|PROT_WRITE, MAP_PRIVATE|MAP_FIXED|MAP_DENYWRITE, 3, 0xe7000) = 0x70278b9f5000
+close(3)                                = 0
+mmap(NULL, 8192, PROT_READ|PROT_WRITE, MAP_PRIVATE|MAP_ANONYMOUS, -1, 0) = 0x70278b90c000
+mmap(NULL, 12288, PROT_READ|PROT_WRITE, MAP_PRIVATE|MAP_ANONYMOUS, -1, 0) = 0x70278b909000
+arch_prctl(ARCH_SET_FS, 0x70278b909740) = 0
+set_tid_address(0x70278b909a10)         = 14671
+set_robust_list(0x70278b909a20, 24)     = 0
+rseq(0x70278b90a060, 0x20, 0, 0x53053053) = 0
+mprotect(0x70278b3ff000, 16384, PROT_READ) = 0
+mprotect(0x70278b9f5000, 4096, PROT_READ) = 0
+mprotect(0x70278ba23000, 4096, PROT_READ) = 0
+mprotect(0x70278b86c000, 45056, PROT_READ) = 0
+mprotect(0x64831dff6000, 4096, PROT_READ) = 0
+mprotect(0x70278ba65000, 8192, PROT_READ) = 0
+prlimit64(0, RLIMIT_STACK, NULL, {rlim_cur=8192*1024, rlim_max=RLIM64_INFINITY}) = 0
+munmap(0x70278ba25000, 31547)           = 0
+futex(0x70278b87a7bc, FUTEX_WAKE_PRIVATE, 2147483647) = 0
+getrandom("\x36\xe5\x1e\x68\xb9\x2b\x20\x93", 8, GRND_NONBLOCK) = 8
+brk(NULL)                               = 0x6483231b4000
+brk(0x6483231d5000)                     = 0x6483231d5000
+openat(AT_FDCWD, "./lib1.so", O_RDONLY|O_CLOEXEC) = 3
+read(3, "\177ELF\2\1\1\0\0\0\0\0\0\0\0\0\3\0>\0\1\0\0\0\0\0\0\0\0\0\0\0"..., 832) = 832
+fstat(3, {st_mode=S_IFREG|0755, st_size=16832, ...}) = 0
+getcwd("/home/unix/sem3/OS/lb_4/build", 128) = 30
+mmap(NULL, 16424, PROT_READ, MAP_PRIVATE|MAP_DENYWRITE, 3, 0) = 0x70278ba28000
+mmap(0x70278ba29000, 4096, PROT_READ|PROT_EXEC, MAP_PRIVATE|MAP_FIXED|MAP_DENYWRITE, 3, 0x1000) = 0x70278ba29000
+mmap(0x70278ba2a000, 4096, PROT_READ, MAP_PRIVATE|MAP_FIXED|MAP_DENYWRITE, 3, 0x2000) = 0x70278ba2a000
+mmap(0x70278ba2b000, 8192, PROT_READ|PROT_WRITE, MAP_PRIVATE|MAP_FIXED|MAP_DENYWRITE, 3, 0x2000) = 0x70278ba2b000
+close(3)                                = 0
+mprotect(0x70278ba2b000, 4096, PROT_READ) = 0
+fstat(1, {st_mode=S_IFCHR|0620, st_rdev=makedev(0x88, 0x4), ...}) = 0
+write(1, "\320\242\320\265\320\272\321\203\321\211\320\260\321\217 \321\200\320\265\320\260\320\273\320\270\320\267\320\260\321\206\320"..., 86) = 86
+write(1, "\320\232\320\276\320\274\320\260\320\275\320\264\320\260 0 \342\200\224 \320\277\320\265\321\200\320\265\320\272\320"..., 65) = 65
+write(1, "\n", 1)                       = 1
+write(1, "> ", 2)                       = 2
+fstat(0, {st_mode=S_IFIFO|0600, st_size=0, ...}) = 0
+read(0, "1 1000\n2 15\n0\n1\n1 1000\n0\n", 4096) = 25
+write(1, "\317\200 (Leibniz series, K=1000) = -1"..., 39) = 39
+write(1, "\n", 1)                       = 1
+write(1, "> ", 2)                       = 2
+write(1, "e (Limit (1+1/x)^x, x=15) = 2.63"..., 36) = 36
+write(1, "\n", 1)                       = 1
+write(1, "> ", 2)                       = 2
+munmap(0x70278ba28000, 16424)           = 0
+openat(AT_FDCWD, "./lib2.so", O_RDONLY|O_CLOEXEC) = 3
+read(3, "\177ELF\2\1\1\0\0\0\0\0\0\0\0\0\3\0>\0\1\0\0\0\0\0\0\0\0\0\0\0"..., 832) = 832
+fstat(3, {st_mode=S_IFREG|0755, st_size=16784, ...}) = 0
+getcwd("/home/unix/sem3/OS/lb_4/build", 128) = 30
+mmap(NULL, 16416, PROT_READ, MAP_PRIVATE|MAP_DENYWRITE, 3, 0) = 0x70278ba28000
+mmap(0x70278ba29000, 4096, PROT_READ|PROT_EXEC, MAP_PRIVATE|MAP_FIXED|MAP_DENYWRITE, 3, 0x1000) = 0x70278ba29000
+mmap(0x70278ba2a000, 4096, PROT_READ, MAP_PRIVATE|MAP_FIXED|MAP_DENYWRITE, 3, 0x2000) = 0x70278ba2a000
+mmap(0x70278ba2b000, 8192, PROT_READ|PROT_WRITE, MAP_PRIVATE|MAP_FIXED|MAP_DENYWRITE, 3, 0x2000) = 0x70278ba2b000
+close(3)                                = 0
+mprotect(0x70278ba2b000, 4096, PROT_READ) = 0
+write(1, "\320\237\320\265\321\200\320\265\320\272\320\273\321\216\321\207\320\265\320\275\320\276 \320\275\320\260: \320\244\320"..., 83) = 83
+write(1, "\n", 1)                       = 1
+write(1, "> ", 2)                       = 2
+write(1, "\320\242\321\200\320\265\320\261\321\203\320\265\321\202\321\201\321\217 \321\205\320\276\321\202\321\217 \320\261\321\213"..., 59) = 59
+write(1, "\n", 1)                       = 1
+write(1, "> ", 2)                       = 2
+write(1, "\317\200 (Wallis product, K=1000) = 3."..., 38) = 38
+write(1, "\n", 1)                       = 1
+write(1, "> ", 2)                       = 2
+munmap(0x70278ba28000, 16416)           = 0
+openat(AT_FDCWD, "./lib1.so", O_RDONLY|O_CLOEXEC) = 3
+read(3, "\177ELF\2\1\1\0\0\0\0\0\0\0\0\0\3\0>\0\1\0\0\0\0\0\0\0\0\0\0\0"..., 832) = 832
+fstat(3, {st_mode=S_IFREG|0755, st_size=16832, ...}) = 0
+getcwd("/home/unix/sem3/OS/lb_4/build", 128) = 30
+mmap(NULL, 16424, PROT_READ, MAP_PRIVATE|MAP_DENYWRITE, 3, 0) = 0x70278ba28000
+mmap(0x70278ba29000, 4096, PROT_READ|PROT_EXEC, MAP_PRIVATE|MAP_FIXED|MAP_DENYWRITE, 3, 0x1000) = 0x70278ba29000
+mmap(0x70278ba2a000, 4096, PROT_READ, MAP_PRIVATE|MAP_FIXED|MAP_DENYWRITE, 3, 0x2000) = 0x70278ba2a000
+mmap(0x70278ba2b000, 8192, PROT_READ|PROT_WRITE, MAP_PRIVATE|MAP_FIXED|MAP_DENYWRITE, 3, 0x2000) = 0x70278ba2b000
+close(3)                                = 0
+mprotect(0x70278ba2b000, 4096, PROT_READ) = 0
+write(1, "\320\237\320\265\321\200\320\265\320\272\320\273\321\216\321\207\320\265\320\275\320\276 \320\275\320\260: \320\240\321"..., 78) = 78
+write(1, "\n", 1)                       = 1
+write(1, "> ", 2)                       = 2
+read(0, "", 4096)                       = 0
+munmap(0x70278ba28000, 16424)           = 0
+exit_group(0)                           = ?
++++ exited with 0 +++
+
+
+\end{verbatim} 
+\section{Выводы}
+
+В ходе лабораторной работы полностью решена поставленная задача.  
+Разработаны две динамические библиотеки с четырьмя численными методами вычисления π и e.  
+Реализованы обе тестовые программы: со статической линковкой и с динамической загрузкой.  
+В динамической версии обеспечено переключение реализаций по команде 0.  
+Применён объектно-ориентированный подход.  
+Проект собирается через CMake и корректно работает под Linux, демонстрируя владение механизмами статической и динамической линковки.
+
+\pagebreak

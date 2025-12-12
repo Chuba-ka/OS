@@ -1,0 +1,424 @@
+
+\section*{}
+\addcontentsline{toc}{section}{Лабораторная работа №1}
+
+\begin{center}
+\bfseries
+\large
+Лабораторная работа \textnumero 1 
+
+\vspace{12pt}
+
+\end{center}
+
+\section{Условие}
+        Родительский процесс создает два дочерних процесса. Первой строкой пользователь в консоль
+родительского процесса вводит имя файла, которое будет использовано для открытия File с таким
+именем на запись для child1. Аналогично для второй строки и процесса child2. Родительский 
+и
+дочерний процесс должны быть представлены разными программами. Родительский процесс принимает от пользователя строки произвольной длины и пересылает их в
+pipe1 или в pipe2 в зависимости от правила фильтрации. Процесс child1 и child2 производят работу
+над строками. Процессы пишут результаты своей работы в стандартный вывод. 
+
+\subsection*{Цель работы}
+        Изучение механизмов создания процессов, организации межпроцессного взаимодействия через pipes и обработки данных в многопроцессной архитектуре.
+
+\subsection*{Задание}
+    Правило фильтрации: строки длины больше 10 отправляются в pipe2, четные в pipe1.
+    Дочерние процессы удаляют все гласные из строк.
+
+\subsection*{Вариант}17
+
+\section{Метод решения}
+Данная программа реализует многопроцессную обработку текстовых данных с использованием каналов (pipes) для межпроцессного взаимодействия.
+Основной алгоритм: родительский процесс читает строки из стандартного ввода и направляет строки длиной больше 10 второму дочернему процессу, меньше 10 - первому. Каждый дочерний процесс получает строки из своего канала, удаляет все гласныеиз строк их и записывает в указанный файл.
+
+Ключевые компоненты:\\
+ParentProcess - управляет каналами и дочерними процессами\\
+Pipe - реализация каналов\\
+ChildProcess - запускает дочерние процессы\\
+ChildProcessor - обрабатывает данные в дочерних процессах\\
+\\
+Системные вызовы:\\
+Linux: pipe, fork, execl, read, write\\
+\\
+Программа использует объектно-ориентированный подход с инкапсуляцией.
+
+\section{Описание программы}
+Программа реализует многопроцессную обработку текстовых данных через каналы (pipes). \\
+Родительский процесс читает строки из стандартного ввода и распределяет их между двумя дочерними процессами \\
+Каждый дочерний процесс удаляет все гласные буквы и записывает результат в указанный файл.\\
+\\
+Программа состоит из двух исполняемых файлов: \texttt{parent} и \texttt{child}. \\
+\texttt{parent} (\texttt{src/parent.cpp}) — родительский процесс: \\
+создаёт каналы (\texttt{Pipe}), порождает дочерние процессы (\texttt{fork/execl}), \\
+считывает строки до \texttt{END} и распределяет их по длине. \\
+\texttt{child} (\texttt{src/child.cpp}) — дочерний процесс: \\
+через \texttt{ChildProcess} читает данные из канала, \\
+удаляет гласные с помощью \texttt{ChildProcessor} \\
+и записывает результат в файл и на экран.\
+
+
+\section{Системные вызовы}
+\begin{verbatim}
+55532 execve("./parent", ["./parent"], 0x7ffd7d0a0d38 /* 42 vars */) = 0
+55532 brk(NULL)                         = 0x5bdb92fb9000
+55532 mmap(NULL, 8192, PROT_READ|PROT_WRITE, MAP_PRIVATE|MAP_ANONYMOUS, -1, 0) = 0x7c7bc6641000
+55532 access("/etc/ld.so.preload", R_OK) = -1 ENOENT (No such file or directory)
+55532 openat(AT_FDCWD, "/etc/ld.so.cache", O_RDONLY|O_CLOEXEC) = 3
+55532 fstat(3, {st_mode=S_IFREG|0644, st_size=30415, ...}) = 0
+55532 mmap(NULL, 30415, PROT_READ, MAP_PRIVATE, 3, 0) = 0x7c7bc6639000
+55532 close(3)                          = 0
+55532 openat(AT_FDCWD, "/lib/x86_64-linux-gnu/libstdc++.so.6", O_RDONLY|O_CLOEXEC) = 3
+55532 read(3, "\177ELF\2\1\1\3\0\0\0\0\0\0\0\0\3\0>\0\1\0\0\0\0\0\0\0\0\0\0\0"..., 832) = 832
+55532 fstat(3, {st_mode=S_IFREG|0644, st_size=2592224, ...}) = 0
+55532 mmap(NULL, 2609472, PROT_READ, MAP_PRIVATE|MAP_DENYWRITE, 3, 0) = 0x7c7bc6200000
+55532 mmap(0x7c7bc629d000, 1343488, PROT_READ|PROT_EXEC, MAP_PRIVATE|MAP_FIXED|MAP_DENYWRITE, 3, 0x9d000) = 0x7c7bc629d000
+55532 mmap(0x7c7bc63e5000, 552960, PROT_READ, MAP_PRIVATE|MAP_FIXED|MAP_DENYWRITE, 3, 0x1e5000) = 0x7c7bc63e5000
+55532 mmap(0x7c7bc646c000, 57344, PROT_READ|PROT_WRITE, MAP_PRIVATE|MAP_FIXED|MAP_DENYWRITE, 3, 0x26b000) = 0x7c7bc646c000
+55532 mmap(0x7c7bc647a000, 12608, PROT_READ|PROT_WRITE, MAP_PRIVATE|MAP_FIXED|MAP_ANONYMOUS, -1, 0) = 0x7c7bc647a000
+55532 close(3)                          = 0
+55532 openat(AT_FDCWD, "/lib/x86_64-linux-gnu/libgcc_s.so.1", O_RDONLY|O_CLOEXEC) = 3
+55532 read(3, "\177ELF\2\1\1\0\0\0\0\0\0\0\0\0\3\0>\0\1\0\0\0\0\0\0\0\0\0\0\0"..., 832) = 832
+55532 fstat(3, {st_mode=S_IFREG|0644, st_size=183024, ...}) = 0
+55532 mmap(NULL, 185256, PROT_READ, MAP_PRIVATE|MAP_DENYWRITE, 3, 0) = 0x7c7bc660b000
+55532 mmap(0x7c7bc660f000, 147456, PROT_READ|PROT_EXEC, MAP_PRIVATE|MAP_FIXED|MAP_DENYWRITE, 3, 0x4000) = 0x7c7bc660f000
+55532 mmap(0x7c7bc6633000, 16384, PROT_READ, MAP_PRIVATE|MAP_FIXED|MAP_DENYWRITE, 3, 0x28000) = 0x7c7bc6633000
+55532 mmap(0x7c7bc6637000, 8192, PROT_READ|PROT_WRITE, MAP_PRIVATE|MAP_FIXED|MAP_DENYWRITE, 3, 0x2b000) = 0x7c7bc6637000
+55532 close(3)                          = 0
+55532 openat(AT_FDCWD, "/lib/x86_64-linux-gnu/libc.so.6", O_RDONLY|O_CLOEXEC) = 3
+55532 read(3, "\177ELF\2\1\1\3\0\0\0\0\0\0\0\0\3\0>\0\1\0\0\0\220\243\2\0\0\0\0\0"..., 832) = 832
+55532 pread64(3, "\6\0\0\0\4\0\0\0@\0\0\0\0\0\0\0@\0\0\0\0\0\0\0@\0\0\0\0\0\0\0"..., 784, 64) = 784
+55532 fstat(3, {st_mode=S_IFREG|0755, st_size=2125328, ...}) = 0
+55532 pread64(3, "\6\0\0\0\4\0\0\0@\0\0\0\0\0\0\0@\0\0\0\0\0\0\0@\0\0\0\0\0\0\0"..., 784, 64) = 784
+55532 mmap(NULL, 2170256, PROT_READ, MAP_PRIVATE|MAP_DENYWRITE, 3, 0) = 0x7c7bc5e00000
+55532 mmap(0x7c7bc5e28000, 1605632, PROT_READ|PROT_EXEC, MAP_PRIVATE|MAP_FIXED|MAP_DENYWRITE, 3, 0x28000) = 0x7c7bc5e28000
+55532 mmap(0x7c7bc5fb0000, 323584, PROT_READ, MAP_PRIVATE|MAP_FIXED|MAP_DENYWRITE, 3, 0x1b0000) = 0x7c7bc5fb0000
+55532 mmap(0x7c7bc5fff000, 24576, PROT_READ|PROT_WRITE, MAP_PRIVATE|MAP_FIXED|MAP_DENYWRITE, 3, 0x1fe000) = 0x7c7bc5fff000
+55532 mmap(0x7c7bc6005000, 52624, PROT_READ|PROT_WRITE, MAP_PRIVATE|MAP_FIXED|MAP_ANONYMOUS, -1, 0) = 0x7c7bc6005000
+55532 close(3)                          = 0
+55532 openat(AT_FDCWD, "/lib/x86_64-linux-gnu/libm.so.6", O_RDONLY|O_CLOEXEC) = 3
+55532 read(3, "\177ELF\2\1\1\3\0\0\0\0\0\0\0\0\3\0>\0\1\0\0\0\0\0\0\0\0\0\0\0"..., 832) = 832
+55532 fstat(3, {st_mode=S_IFREG|0644, st_size=952616, ...}) = 0
+55532 mmap(NULL, 950296, PROT_READ, MAP_PRIVATE|MAP_DENYWRITE, 3, 0) = 0x7c7bc6522000
+55532 mmap(0x7c7bc6532000, 520192, PROT_READ|PROT_EXEC, MAP_PRIVATE|MAP_FIXED|MAP_DENYWRITE, 3, 0x10000) = 0x7c7bc6532000
+55532 mmap(0x7c7bc65b1000, 360448, PROT_READ, MAP_PRIVATE|MAP_FIXED|MAP_DENYWRITE, 3, 0x8f000) = 0x7c7bc65b1000
+55532 mmap(0x7c7bc6609000, 8192, PROT_READ|PROT_WRITE, MAP_PRIVATE|MAP_FIXED|MAP_DENYWRITE, 3, 0xe7000) = 0x7c7bc6609000
+55532 close(3)                          = 0
+55532 mmap(NULL, 8192, PROT_READ|PROT_WRITE, MAP_PRIVATE|MAP_ANONYMOUS, -1, 0) = 0x7c7bc6520000
+55532 mmap(NULL, 12288, PROT_READ|PROT_WRITE, MAP_PRIVATE|MAP_ANONYMOUS, -1, 0) = 0x7c7bc651d000
+55532 arch_prctl(ARCH_SET_FS, 0x7c7bc651d740) = 0
+55532 set_tid_address(0x7c7bc651da10)   = 55532
+55532 set_robust_list(0x7c7bc651da20, 24) = 0
+55532 rseq(0x7c7bc651e060, 0x20, 0, 0x53053053) = 0
+55532 mprotect(0x7c7bc5fff000, 16384, PROT_READ) = 0
+55532 mprotect(0x7c7bc6609000, 4096, PROT_READ) = 0
+55532 mprotect(0x7c7bc6637000, 4096, PROT_READ) = 0
+55532 mprotect(0x7c7bc646c000, 45056, PROT_READ) = 0
+55532 mprotect(0x5bdb5cddb000, 4096, PROT_READ) = 0
+55532 mprotect(0x7c7bc6679000, 8192, PROT_READ) = 0
+55532 prlimit64(0, RLIMIT_STACK, NULL, {rlim_cur=8192*1024, rlim_max=RLIM64_INFINITY}) = 0
+55532 munmap(0x7c7bc6639000, 30415)     = 0
+55532 futex(0x7c7bc647a7bc, FUTEX_WAKE_PRIVATE, 2147483647) = 0
+55532 getrandom("\x34\x6e\x52\x38\xe7\x7f\xd6\xdd", 8, GRND_NONBLOCK) = 8
+55532 brk(NULL)                         = 0x5bdb92fb9000
+55532 brk(0x5bdb92fda000)               = 0x5bdb92fda000
+55532 fstat(0, {st_mode=S_IFCHR|0620, st_rdev=makedev(0x88, 0x4), ...}) = 0
+55532 read(0, "", 1024)                 = 0
+55532 pipe2([3, 4], 0)                  = 0
+55532 pipe2([5, 6], 0)                  = 0
+55532 clone(child_stack=NULL, flags=CLONE_CHILD_CLEARTID|CLONE_CHILD_SETTID|SIGCHLD, child_tidptr=0x7c7bc651da10) = 55679
+55532 clone(child_stack=NULL, flags=CLONE_CHILD_CLEARTID|CLONE_CHILD_SETTID|SIGCHLD <unfinished ...>
+55679 set_robust_list(0x7c7bc651da20, 24) = 0
+55679 close(4 <unfinished ...>
+55532 <... clone resumed>, child_tidptr=0x7c7bc651da10) = 55680
+55680 set_robust_list(0x7c7bc651da20, 24 <unfinished ...>
+55532 close(3 <unfinished ...>
+55679 <... close resumed>)              = 0
+55680 <... set_robust_list resumed>)    = 0
+55532 <... close resumed>)              = 0
+55679 close(5 <unfinished ...>
+55680 close(6 <unfinished ...>
+55532 close(5 <unfinished ...>
+55679 <... close resumed>)              = 0
+55532 <... close resumed>)              = 0
+55680 <... close resumed>)              = 0
+55532 close(4 <unfinished ...>
+55679 close(6 <unfinished ...>
+55680 close(3 <unfinished ...>
+55532 <... close resumed>)              = 0
+55680 <... close resumed>)              = 0
+55679 <... close resumed>)              = 0
+55532 close(6)                          = 0
+55680 close(4 <unfinished ...>
+55679 execve("./child", ["./child", "3", ""], 0x7ffd87d47708 /* 42 vars */ <unfinished ...>
+55532 wait4(55679,  <unfinished ...>
+55680 <... close resumed>)              = 0
+55680 execve("./child", ["./child", "5", ""], 0x7ffd87d47708 /* 42 vars */) = 0
+55679 <... execve resumed>)             = 0
+55680 brk(NULL <unfinished ...>
+55679 brk(NULL <unfinished ...>
+55680 <... brk resumed>)                = 0x5929f5b5e000
+55679 <... brk resumed>)                = 0x6290049ce000
+55680 mmap(NULL, 8192, PROT_READ|PROT_WRITE, MAP_PRIVATE|MAP_ANONYMOUS, -1, 0 <unfinished ...>
+55679 mmap(NULL, 8192, PROT_READ|PROT_WRITE, MAP_PRIVATE|MAP_ANONYMOUS, -1, 0 <unfinished ...>
+55680 <... mmap resumed>)               = 0x731db2bb4000
+55679 <... mmap resumed>)               = 0x74a03c052000
+55680 access("/etc/ld.so.preload", R_OK <unfinished ...>
+55679 access("/etc/ld.so.preload", R_OK <unfinished ...>
+55680 <... access resumed>)             = -1 ENOENT (No such file or directory)
+55679 <... access resumed>)             = -1 ENOENT (No such file or directory)
+55680 openat(AT_FDCWD, "/etc/ld.so.cache", O_RDONLY|O_CLOEXEC <unfinished ...>
+55679 openat(AT_FDCWD, "/etc/ld.so.cache", O_RDONLY|O_CLOEXEC <unfinished ...>
+55680 <... openat resumed>)             = 3
+55679 <... openat resumed>)             = 4
+55680 fstat(3,  <unfinished ...>
+55679 fstat(4,  <unfinished ...>
+55680 <... fstat resumed>{st_mode=S_IFREG|0644, st_size=30415, ...}) = 0
+55679 <... fstat resumed>{st_mode=S_IFREG|0644, st_size=30415, ...}) = 0
+55680 mmap(NULL, 30415, PROT_READ, MAP_PRIVATE, 3, 0 <unfinished ...>
+55679 mmap(NULL, 30415, PROT_READ, MAP_PRIVATE, 4, 0 <unfinished ...>
+55680 <... mmap resumed>)               = 0x731db2bac000
+55679 <... mmap resumed>)               = 0x74a03c04a000
+55680 close(3 <unfinished ...>
+55679 close(4 <unfinished ...>
+55680 <... close resumed>)              = 0
+55679 <... close resumed>)              = 0
+55680 openat(AT_FDCWD, "/lib/x86_64-linux-gnu/libstdc++.so.6", O_RDONLY|O_CLOEXEC <unfinished ...>
+55679 openat(AT_FDCWD, "/lib/x86_64-linux-gnu/libstdc++.so.6", O_RDONLY|O_CLOEXEC <unfinished ...>
+55680 <... openat resumed>)             = 3
+55679 <... openat resumed>)             = 4
+55680 read(3,  <unfinished ...>
+55679 read(4,  <unfinished ...>
+55680 <... read resumed>"\177ELF\2\1\1\3\0\0\0\0\0\0\0\0\3\0>\0\1\0\0\0\0\0\0\0\0\0\0\0"..., 832) = 832
+55679 <... read resumed>"\177ELF\2\1\1\3\0\0\0\0\0\0\0\0\3\0>\0\1\0\0\0\0\0\0\0\0\0\0\0"..., 832) = 832
+55680 fstat(3,  <unfinished ...>
+55679 fstat(4,  <unfinished ...>
+55680 <... fstat resumed>{st_mode=S_IFREG|0644, st_size=2592224, ...}) = 0
+55679 <... fstat resumed>{st_mode=S_IFREG|0644, st_size=2592224, ...}) = 0
+55680 mmap(NULL, 2609472, PROT_READ, MAP_PRIVATE|MAP_DENYWRITE, 3, 0 <unfinished ...>
+55679 mmap(NULL, 2609472, PROT_READ, MAP_PRIVATE|MAP_DENYWRITE, 4, 0 <unfinished ...>
+55680 <... mmap resumed>)               = 0x731db2800000
+55679 <... mmap resumed>)               = 0x74a03bc00000
+55680 mmap(0x731db289d000, 1343488, PROT_READ|PROT_EXEC, MAP_PRIVATE|MAP_FIXED|MAP_DENYWRITE, 3, 0x9d000 <unfinished ...>
+55679 mmap(0x74a03bc9d000, 1343488, PROT_READ|PROT_EXEC, MAP_PRIVATE|MAP_FIXED|MAP_DENYWRITE, 4, 0x9d000 <unfinished ...>
+55680 <... mmap resumed>)               = 0x731db289d000
+55679 <... mmap resumed>)               = 0x74a03bc9d000
+55680 mmap(0x731db29e5000, 552960, PROT_READ, MAP_PRIVATE|MAP_FIXED|MAP_DENYWRITE, 3, 0x1e5000 <unfinished ...>
+55679 mmap(0x74a03bde5000, 552960, PROT_READ, MAP_PRIVATE|MAP_FIXED|MAP_DENYWRITE, 4, 0x1e5000 <unfinished ...>
+55680 <... mmap resumed>)               = 0x731db29e5000
+55680 mmap(0x731db2a6c000, 57344, PROT_READ|PROT_WRITE, MAP_PRIVATE|MAP_FIXED|MAP_DENYWRITE, 3, 0x26b000 <unfinished ...>
+55679 <... mmap resumed>)               = 0x74a03bde5000
+55680 <... mmap resumed>)               = 0x731db2a6c000
+55679 mmap(0x74a03be6c000, 57344, PROT_READ|PROT_WRITE, MAP_PRIVATE|MAP_FIXED|MAP_DENYWRITE, 4, 0x26b000 <unfinished ...>
+55680 mmap(0x731db2a7a000, 12608, PROT_READ|PROT_WRITE, MAP_PRIVATE|MAP_FIXED|MAP_ANONYMOUS, -1, 0 <unfinished ...>
+55679 <... mmap resumed>)               = 0x74a03be6c000
+55680 <... mmap resumed>)               = 0x731db2a7a000
+55679 mmap(0x74a03be7a000, 12608, PROT_READ|PROT_WRITE, MAP_PRIVATE|MAP_FIXED|MAP_ANONYMOUS, -1, 0 <unfinished ...>
+55680 close(3 <unfinished ...>
+55679 <... mmap resumed>)               = 0x74a03be7a000
+55680 <... close resumed>)              = 0
+55680 openat(AT_FDCWD, "/lib/x86_64-linux-gnu/libgcc_s.so.1", O_RDONLY|O_CLOEXEC <unfinished ...>
+55679 close(4 <unfinished ...>
+55680 <... openat resumed>)             = 3
+55679 <... close resumed>)              = 0
+55680 read(3,  <unfinished ...>
+55679 openat(AT_FDCWD, "/lib/x86_64-linux-gnu/libgcc_s.so.1", O_RDONLY|O_CLOEXEC <unfinished ...>
+55680 <... read resumed>"\177ELF\2\1\1\0\0\0\0\0\0\0\0\0\3\0>\0\1\0\0\0\0\0\0\0\0\0\0\0"..., 832) = 832
+55680 fstat(3,  <unfinished ...>
+55679 <... openat resumed>)             = 4
+55680 <... fstat resumed>{st_mode=S_IFREG|0644, st_size=183024, ...}) = 0
+55679 read(4,  <unfinished ...>
+55680 mmap(NULL, 185256, PROT_READ, MAP_PRIVATE|MAP_DENYWRITE, 3, 0 <unfinished ...>
+55679 <... read resumed>"\177ELF\2\1\1\0\0\0\0\0\0\0\0\0\3\0>\0\1\0\0\0\0\0\0\0\0\0\0\0"..., 832) = 832
+55680 <... mmap resumed>)               = 0x731db2b7e000
+55680 mmap(0x731db2b82000, 147456, PROT_READ|PROT_EXEC, MAP_PRIVATE|MAP_FIXED|MAP_DENYWRITE, 3, 0x4000 <unfinished ...>
+55679 fstat(4,  <unfinished ...>
+55680 <... mmap resumed>)               = 0x731db2b82000
+55679 <... fstat resumed>{st_mode=S_IFREG|0644, st_size=183024, ...}) = 0
+55680 mmap(0x731db2ba6000, 16384, PROT_READ, MAP_PRIVATE|MAP_FIXED|MAP_DENYWRITE, 3, 0x28000 <unfinished ...>
+55679 mmap(NULL, 185256, PROT_READ, MAP_PRIVATE|MAP_DENYWRITE, 4, 0 <unfinished ...>
+55680 <... mmap resumed>)               = 0x731db2ba6000
+55680 mmap(0x731db2baa000, 8192, PROT_READ|PROT_WRITE, MAP_PRIVATE|MAP_FIXED|MAP_DENYWRITE, 3, 0x2b000 <unfinished ...>
+55679 <... mmap resumed>)               = 0x74a03c01c000
+55680 <... mmap resumed>)               = 0x731db2baa000
+55679 mmap(0x74a03c020000, 147456, PROT_READ|PROT_EXEC, MAP_PRIVATE|MAP_FIXED|MAP_DENYWRITE, 4, 0x4000 <unfinished ...>
+55680 close(3 <unfinished ...>
+55679 <... mmap resumed>)               = 0x74a03c020000
+55680 <... close resumed>)              = 0
+55679 mmap(0x74a03c044000, 16384, PROT_READ, MAP_PRIVATE|MAP_FIXED|MAP_DENYWRITE, 4, 0x28000 <unfinished ...>
+55680 openat(AT_FDCWD, "/lib/x86_64-linux-gnu/libc.so.6", O_RDONLY|O_CLOEXEC <unfinished ...>
+55679 <... mmap resumed>)               = 0x74a03c044000
+55680 <... openat resumed>)             = 3
+55679 mmap(0x74a03c048000, 8192, PROT_READ|PROT_WRITE, MAP_PRIVATE|MAP_FIXED|MAP_DENYWRITE, 4, 0x2b000 <unfinished ...>
+55680 read(3,  <unfinished ...>
+55679 <... mmap resumed>)               = 0x74a03c048000
+55680 <... read resumed>"\177ELF\2\1\1\3\0\0\0\0\0\0\0\0\3\0>\0\1\0\0\0\220\243\2\0\0\0\0\0"..., 832) = 832
+55679 close(4 <unfinished ...>
+55680 pread64(3,  <unfinished ...>
+55679 <... close resumed>)              = 0
+55680 <... pread64 resumed>"\6\0\0\0\4\0\0\0@\0\0\0\0\0\0\0@\0\0\0\0\0\0\0@\0\0\0\0\0\0\0"..., 784, 64) = 784
+55680 fstat(3,  <unfinished ...>
+55679 openat(AT_FDCWD, "/lib/x86_64-linux-gnu/libc.so.6", O_RDONLY|O_CLOEXEC <unfinished ...>
+55680 <... fstat resumed>{st_mode=S_IFREG|0755, st_size=2125328, ...}) = 0
+55679 <... openat resumed>)             = 4
+55680 pread64(3,  <unfinished ...>
+55679 read(4,  <unfinished ...>
+55680 <... pread64 resumed>"\6\0\0\0\4\0\0\0@\0\0\0\0\0\0\0@\0\0\0\0\0\0\0@\0\0\0\0\0\0\0"..., 784, 64) = 784
+55679 <... read resumed>"\177ELF\2\1\1\3\0\0\0\0\0\0\0\0\3\0>\0\1\0\0\0\220\243\2\0\0\0\0\0"..., 832) = 832
+55680 mmap(NULL, 2170256, PROT_READ, MAP_PRIVATE|MAP_DENYWRITE, 3, 0 <unfinished ...>
+55679 pread64(4,  <unfinished ...>
+55680 <... mmap resumed>)               = 0x731db2400000
+55679 <... pread64 resumed>"\6\0\0\0\4\0\0\0@\0\0\0\0\0\0\0@\0\0\0\0\0\0\0@\0\0\0\0\0\0\0"..., 784, 64) = 784
+55680 mmap(0x731db2428000, 1605632, PROT_READ|PROT_EXEC, MAP_PRIVATE|MAP_FIXED|MAP_DENYWRITE, 3, 0x28000 <unfinished ...>
+55679 fstat(4, {st_mode=S_IFREG|0755, st_size=2125328, ...}) = 0
+55680 <... mmap resumed>)               = 0x731db2428000
+55679 pread64(4,  <unfinished ...>
+55680 mmap(0x731db25b0000, 323584, PROT_READ, MAP_PRIVATE|MAP_FIXED|MAP_DENYWRITE, 3, 0x1b0000 <unfinished ...>
+55679 <... pread64 resumed>"\6\0\0\0\4\0\0\0@\0\0\0\0\0\0\0@\0\0\0\0\0\0\0@\0\0\0\0\0\0\0"..., 784, 64) = 784
+55680 <... mmap resumed>)               = 0x731db25b0000
+55679 mmap(NULL, 2170256, PROT_READ, MAP_PRIVATE|MAP_DENYWRITE, 4, 0 <unfinished ...>
+55680 mmap(0x731db25ff000, 24576, PROT_READ|PROT_WRITE, MAP_PRIVATE|MAP_FIXED|MAP_DENYWRITE, 3, 0x1fe000 <unfinished ...>
+55679 <... mmap resumed>)               = 0x74a03b800000
+55680 <... mmap resumed>)               = 0x731db25ff000
+55679 mmap(0x74a03b828000, 1605632, PROT_READ|PROT_EXEC, MAP_PRIVATE|MAP_FIXED|MAP_DENYWRITE, 4, 0x28000 <unfinished ...>
+55680 mmap(0x731db2605000, 52624, PROT_READ|PROT_WRITE, MAP_PRIVATE|MAP_FIXED|MAP_ANONYMOUS, -1, 0 <unfinished ...>
+55679 <... mmap resumed>)               = 0x74a03b828000
+55680 <... mmap resumed>)               = 0x731db2605000
+55679 mmap(0x74a03b9b0000, 323584, PROT_READ, MAP_PRIVATE|MAP_FIXED|MAP_DENYWRITE, 4, 0x1b0000 <unfinished ...>
+55680 close(3 <unfinished ...>
+55679 <... mmap resumed>)               = 0x74a03b9b0000
+55680 <... close resumed>)              = 0
+55679 mmap(0x74a03b9ff000, 24576, PROT_READ|PROT_WRITE, MAP_PRIVATE|MAP_FIXED|MAP_DENYWRITE, 4, 0x1fe000 <unfinished ...>
+55680 openat(AT_FDCWD, "/lib/x86_64-linux-gnu/libm.so.6", O_RDONLY|O_CLOEXEC <unfinished ...>
+55679 <... mmap resumed>)               = 0x74a03b9ff000
+55680 <... openat resumed>)             = 3
+55679 mmap(0x74a03ba05000, 52624, PROT_READ|PROT_WRITE, MAP_PRIVATE|MAP_FIXED|MAP_ANONYMOUS, -1, 0 <unfinished ...>
+55680 read(3,  <unfinished ...>
+55679 <... mmap resumed>)               = 0x74a03ba05000
+55680 <... read resumed>"\177ELF\2\1\1\3\0\0\0\0\0\0\0\0\3\0>\0\1\0\0\0\0\0\0\0\0\0\0\0"..., 832) = 832
+55679 close(4 <unfinished ...>
+55680 fstat(3,  <unfinished ...>
+55679 <... close resumed>)              = 0
+55680 <... fstat resumed>{st_mode=S_IFREG|0644, st_size=952616, ...}) = 0
+55679 openat(AT_FDCWD, "/lib/x86_64-linux-gnu/libm.so.6", O_RDONLY|O_CLOEXEC <unfinished ...>
+55680 mmap(NULL, 950296, PROT_READ, MAP_PRIVATE|MAP_DENYWRITE, 3, 0) = 0x731db2a95000
+55679 <... openat resumed>)             = 4
+55680 mmap(0x731db2aa5000, 520192, PROT_READ|PROT_EXEC, MAP_PRIVATE|MAP_FIXED|MAP_DENYWRITE, 3, 0x10000 <unfinished ...>
+55679 read(4,  <unfinished ...>
+55680 <... mmap resumed>)               = 0x731db2aa5000
+55679 <... read resumed>"\177ELF\2\1\1\3\0\0\0\0\0\0\0\0\3\0>\0\1\0\0\0\0\0\0\0\0\0\0\0"..., 832) = 832
+55680 mmap(0x731db2b24000, 360448, PROT_READ, MAP_PRIVATE|MAP_FIXED|MAP_DENYWRITE, 3, 0x8f000 <unfinished ...>
+55679 fstat(4,  <unfinished ...>
+55680 <... mmap resumed>)               = 0x731db2b24000
+55679 <... fstat resumed>{st_mode=S_IFREG|0644, st_size=952616, ...}) = 0
+55680 mmap(0x731db2b7c000, 8192, PROT_READ|PROT_WRITE, MAP_PRIVATE|MAP_FIXED|MAP_DENYWRITE, 3, 0xe7000 <unfinished ...>
+55679 mmap(NULL, 950296, PROT_READ, MAP_PRIVATE|MAP_DENYWRITE, 4, 0 <unfinished ...>
+55680 <... mmap resumed>)               = 0x731db2b7c000
+55679 <... mmap resumed>)               = 0x74a03bf33000
+55680 close(3 <unfinished ...>
+55679 mmap(0x74a03bf43000, 520192, PROT_READ|PROT_EXEC, MAP_PRIVATE|MAP_FIXED|MAP_DENYWRITE, 4, 0x10000 <unfinished ...>
+55680 <... close resumed>)              = 0
+55679 <... mmap resumed>)               = 0x74a03bf43000
+55680 mmap(NULL, 8192, PROT_READ|PROT_WRITE, MAP_PRIVATE|MAP_ANONYMOUS, -1, 0 <unfinished ...>
+55679 mmap(0x74a03bfc2000, 360448, PROT_READ, MAP_PRIVATE|MAP_FIXED|MAP_DENYWRITE, 4, 0x8f000 <unfinished ...>
+55680 <... mmap resumed>)               = 0x731db2a93000
+55679 <... mmap resumed>)               = 0x74a03bfc2000
+55680 mmap(NULL, 12288, PROT_READ|PROT_WRITE, MAP_PRIVATE|MAP_ANONYMOUS, -1, 0 <unfinished ...>
+55679 mmap(0x74a03c01a000, 8192, PROT_READ|PROT_WRITE, MAP_PRIVATE|MAP_FIXED|MAP_DENYWRITE, 4, 0xe7000 <unfinished ...>
+55680 <... mmap resumed>)               = 0x731db2a90000
+55679 <... mmap resumed>)               = 0x74a03c01a000
+55680 arch_prctl(ARCH_SET_FS, 0x731db2a90740 <unfinished ...>
+55679 close(4 <unfinished ...>
+55680 <... arch_prctl resumed>)         = 0
+55680 set_tid_address(0x731db2a90a10 <unfinished ...>
+55679 <... close resumed>)              = 0
+55680 <... set_tid_address resumed>)    = 55680
+55679 mmap(NULL, 8192, PROT_READ|PROT_WRITE, MAP_PRIVATE|MAP_ANONYMOUS, -1, 0 <unfinished ...>
+55680 set_robust_list(0x731db2a90a20, 24) = 0
+55679 <... mmap resumed>)               = 0x74a03bf31000
+55680 rseq(0x731db2a91060, 0x20, 0, 0x53053053) = 0
+55679 mmap(NULL, 12288, PROT_READ|PROT_WRITE, MAP_PRIVATE|MAP_ANONYMOUS, -1, 0 <unfinished ...>
+55680 mprotect(0x731db25ff000, 16384, PROT_READ <unfinished ...>
+55679 <... mmap resumed>)               = 0x74a03bf2e000
+55680 <... mprotect resumed>)           = 0
+55679 arch_prctl(ARCH_SET_FS, 0x74a03bf2e740 <unfinished ...>
+55680 mprotect(0x731db2b7c000, 4096, PROT_READ <unfinished ...>
+55679 <... arch_prctl resumed>)         = 0
+55680 <... mprotect resumed>)           = 0
+55679 set_tid_address(0x74a03bf2ea10 <unfinished ...>
+55680 mprotect(0x731db2baa000, 4096, PROT_READ <unfinished ...>
+55679 <... set_tid_address resumed>)    = 55679
+55680 <... mprotect resumed>)           = 0
+55679 set_robust_list(0x74a03bf2ea20, 24) = 0
+55679 rseq(0x74a03bf2f060, 0x20, 0, 0x53053053) = 0
+55680 mprotect(0x731db2a6c000, 45056, PROT_READ <unfinished ...>
+55679 mprotect(0x74a03b9ff000, 16384, PROT_READ <unfinished ...>
+55680 <... mprotect resumed>)           = 0
+55679 <... mprotect resumed>)           = 0
+55680 mprotect(0x5929ea6b2000, 4096, PROT_READ <unfinished ...>
+55679 mprotect(0x74a03c01a000, 4096, PROT_READ <unfinished ...>
+55680 <... mprotect resumed>)           = 0
+55679 <... mprotect resumed>)           = 0
+55680 mprotect(0x731db2bec000, 8192, PROT_READ <unfinished ...>
+55679 mprotect(0x74a03c048000, 4096, PROT_READ <unfinished ...>
+55680 <... mprotect resumed>)           = 0
+55679 <... mprotect resumed>)           = 0
+55680 prlimit64(0, RLIMIT_STACK, NULL, {rlim_cur=8192*1024, rlim_max=RLIM64_INFINITY}) = 0
+55680 munmap(0x731db2bac000, 30415)     = 0
+55679 mprotect(0x74a03be6c000, 45056, PROT_READ <unfinished ...>
+55680 futex(0x731db2a7a7bc, FUTEX_WAKE_PRIVATE, 2147483647 <unfinished ...>
+55679 <... mprotect resumed>)           = 0
+55680 <... futex resumed>)              = 0
+55679 mprotect(0x628ff30e8000, 4096, PROT_READ <unfinished ...>
+55680 getrandom( <unfinished ...>
+55679 <... mprotect resumed>)           = 0
+55680 <... getrandom resumed>"\x26\x4a\x75\x16\x43\xa6\xb6\xdb", 8, GRND_NONBLOCK) = 8
+55679 mprotect(0x74a03c08a000, 8192, PROT_READ <unfinished ...>
+55680 brk(NULL)                         = 0x5929f5b5e000
+55679 <... mprotect resumed>)           = 0
+55680 brk(0x5929f5b7f000 <unfinished ...>
+55679 prlimit64(0, RLIMIT_STACK, NULL,  <unfinished ...>
+55680 <... brk resumed>)                = 0x5929f5b7f000
+55679 <... prlimit64 resumed>{rlim_cur=8192*1024, rlim_max=RLIM64_INFINITY}) = 0
+55680 openat(AT_FDCWD, "", O_WRONLY|O_CREAT|O_TRUNC, 0666 <unfinished ...>
+55679 munmap(0x74a03c04a000, 30415 <unfinished ...>
+55680 <... openat resumed>)             = -1 ENOENT (No such file or directory)
+55679 <... munmap resumed>)             = 0
+55680 write(2, "Failed to open file: ", 21) = 21
+55679 futex(0x74a03be7a7bc, FUTEX_WAKE_PRIVATE, 2147483647 <unfinished ...>
+55680 write(2, "\n", 1 <unfinished ...>
+55679 <... futex resumed>)              = 0
+55680 <... write resumed>)              = 1
+55679 getrandom( <unfinished ...>
+55680 close(5 <unfinished ...>
+55679 <... getrandom resumed>"\x59\xeb\x70\x5f\x8b\x9e\xc0\x6e", 8, GRND_NONBLOCK) = 8
+55680 <... close resumed>)              = 0
+55679 brk(NULL)                         = 0x6290049ce000
+55679 brk(0x6290049ef000 <unfinished ...>
+55680 exit_group(0 <unfinished ...>
+55679 <... brk resumed>)                = 0x6290049ef000
+55680 <... exit_group resumed>)         = ?
+55679 openat(AT_FDCWD, "", O_WRONLY|O_CREAT|O_TRUNC, 0666 <unfinished ...>
+55680 +++ exited with 0 +++
+55532 <... wait4 resumed>NULL, 0, NULL) = ? ERESTARTSYS (To be restarted if SA_RESTART is set)
+55679 <... openat resumed>)             = -1 ENOENT (No such file or directory)
+55532 --- SIGCHLD {si_signo=SIGCHLD, si_code=CLD_EXITED, si_pid=55680, si_uid=1000, si_status=0, si_utime=0, si_stime=0} ---
+55532 wait4(55679,  <unfinished ...>
+55679 write(2, "Failed to open file: ", 21) = 21
+55679 write(2, "\n", 1)                 = 1
+55679 close(3)                          = 0
+55679 exit_group(0)                     = ?
+55679 +++ exited with 0 +++
+55532 <... wait4 resumed>NULL, 0, NULL) = 55679
+55532 --- SIGCHLD {si_signo=SIGCHLD, si_code=CLD_EXITED, si_pid=55679, si_uid=1000, si_status=0, si_utime=0, si_stime=0} ---
+55532 wait4(55680, NULL, 0, NULL)       = 55680
+55532 exit_group(0)                     = ?
+55532 +++ exited with 0 +++
+\end{verbatim} 
+
+\section{Выводы}
+
+В ходе лабораторной работы успешно разработана многопроцессная система обработки текстовых данных с использованием межпроцессного взаимодействия через каналы. Программа демонстрирует корректную работу на Unix системах.
+
+\pagebreak
