@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023/Debian) (preloaded format=pdflatex 2025.11.1)  10 DEC 2025 01:53
+This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023/Debian) (preloaded format=pdflatex 2025.11.1)  25 DEC 2025 14:27
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1930,8 +1930,9 @@ LaTeX Font Info:    Font shape `T2B/Tempora-TLF/m/n' will be
 (/home/unix/sem3/OS/project/common.h
 LaTeX Font Info:    Font shape `T2B/cmtt/bx/n' in size <10> not available
 (Font)              Font shape `T2B/cmtt/m/n' tried instead on input line 1.
-) (/home/unix/sem3/OS/project/server.cpp
-[4] [5] [6] [7]) (/home/unix/sem3/OS/project/client.cpp [8] [9] [10] [11])
+) (/home/unix/sem3/OS/project/Server.cpp
+[4] [5] [6] [7] [8]) (/home/unix/sem3/OS/project/Client.cpp [9] [10] [11]
+[12])
 Overfull \hbox (16.21716pt too wide) in paragraph at lines 248--248
 []\T2B/cmtt/m/n/12 01:49:35.735282 execve("./server",["./server"],0x7ffcb6521d5
 8 /* 37 vars */)
@@ -1967,7 +1968,7 @@ Overfull \hbox (10.04367pt too wide) in paragraph at lines 248--248
  0x753306009000
  []
 
-[12]
+
 Overfull \hbox (102.64606pt too wide) in paragraph at lines 248--248
 []\T2B/cmtt/m/n/12 01:49:35.738003 openat(AT_FDCWD,"/lib/x86_64-linux-gnu/libst
 dc++.so.6",O_RDONLY|O_CLOEXEC)
@@ -2011,7 +2012,7 @@ Overfull \hbox (53.25812pt too wide) in paragraph at lines 248--248
 4,...}) = 0 <0.000037>[] 
  []
 
-
+[13]
 Overfull \hbox (3.87018pt too wide) in paragraph at lines 248--248
 []\T2B/cmtt/m/n/12 01:49:35.738730 mmap(NULL,2609472,PROT_READ,MAP_PRIVATE|MAP_
 DENYWRITE,3,0)
@@ -2191,7 +2192,7 @@ Overfull \hbox (3.87018pt too wide) in paragraph at lines 248--248
 DENYWRITE,3,0)
  []
 
-[13]
+
 Overfull \hbox (226.1159pt too wide) in paragraph at lines 248--248
 []\T2B/cmtt/m/n/12 01:49:35.742097 mmap(0x753305828000,1605632,PROT_READ|PROT_E
 XEC,MAP_PRIVATE|MAP_FIXED|MAP_DENYWRITE,3,0x28000)
@@ -2215,7 +2216,7 @@ Overfull \hbox (189.07495pt too wide) in paragraph at lines 248--248
 TE,MAP_PRIVATE|MAP_FIXED|MAP_ANONYMOUS,-1,0)
  []
 
-
+[14]
 Overfull \hbox (71.7786pt too wide) in paragraph at lines 248--248
 []\T2B/cmtt/m/n/12 01:49:35.742712 openat(AT_FDCWD,"/lib/x86_64-linux-gnu/libm.
 so.6",O_RDONLY|O_CLOEXEC)
@@ -2306,7 +2307,7 @@ Overfull \hbox (349.58575pt too wide) in paragraph at lines 248--248
 a9,sa_mask=[],sa_flags=SA_RESTORER,sa_restorer=0x753305845330},NULL,8)
  []
 
-[14]
+
 Overfull \hbox (22.39066pt too wide) in paragraph at lines 248--248
 []\T2B/cmtt/m/n/12 01:49:35.748478 fstat(1,{st_mode=S_IFCHR|0620,st_rdev=makede
 v(0x88,0x4),...})
@@ -2324,7 +2325,7 @@ Overfull \hbox (226.1159pt too wide) in paragraph at lines 248--248
 ",O_RDWR|O_CREAT|O_EXCL|O_NOFOLLOW|O_CLOEXEC,0600)
  []
 
-
+[15]
 Overfull \hbox (77.95209pt too wide) in paragraph at lines 248--248
 []\T2B/cmtt/m/n/12 01:49:35.748978 mmap(NULL,344672,PROT_READ|PROT_WRITE,MAP_SH
 ARED,3,0) = 0x753305e98000
@@ -2423,7 +2424,7 @@ Overfull \hbox (102.64606pt too wide) in paragraph at lines 248--248
 dc++.so.6",O_RDONLY|O_CLOEXEC)
  []
 
-[15]
+
 Overfull \hbox (170.55447pt too wide) in paragraph at lines 248--248
 []\T2B/cmtt/m/n/12 01:49:40.738418 read(3,"\177ELF\2\1\1\3\0\0\0\0\0\0\0\0\3\0>
 \0\1\0\0\0\0\0\0\0\0\0\0\0@\0\0\0\0\0\0\0
@@ -2467,7 +2468,7 @@ Overfull \hbox (3.87018pt too wide) in paragraph at lines 248--248
 DENYWRITE,3,0)
  []
 
-
+[16]
 Overfull \hbox (226.1159pt too wide) in paragraph at lines 248--248
 []\T2B/cmtt/m/n/12 01:49:40.738780 mmap(0x7e28b789d000,1343488,PROT_READ|PROT_E
 XEC,MAP_PRIVATE|MAP_FIXED|MAP_DENYWRITE,3,0x9d000)
@@ -2647,7 +2648,7 @@ Overfull \hbox (226.1159pt too wide) in paragraph at lines 248--248
 XEC,MAP_PRIVATE|MAP_FIXED|MAP_DENYWRITE,3,0x28000)
  []
 
-[16]
+
 Overfull \hbox (164.38098pt too wide) in paragraph at lines 248--248
 []\T2B/cmtt/m/n/12 01:49:40.741784 mmap(0x7e28b75b0000,323584,PROT_READ,MAP_PRI
 VATE|MAP_FIXED|MAP_DENYWRITE,3,0x1b0000)
@@ -2665,7 +2666,7 @@ Overfull \hbox (189.07495pt too wide) in paragraph at lines 248--248
 TE,MAP_PRIVATE|MAP_FIXED|MAP_ANONYMOUS,-1,0)
  []
 
-
+[17]
 Overfull \hbox (71.7786pt too wide) in paragraph at lines 248--248
 []\T2B/cmtt/m/n/12 01:49:40.742705 openat(AT_FDCWD,"/lib/x86_64-linux-gnu/libm.
 so.6",O_RDONLY|O_CLOEXEC)
@@ -2762,7 +2763,7 @@ Overfull \hbox (22.39066pt too wide) in paragraph at lines 248--248
 v(0x88,0x4),...})
  []
 
-[17]
+
 Overfull \hbox (71.7786pt too wide) in paragraph at lines 248--248
 []\T2B/cmtt/m/n/12 01:49:40.746888 write(1,"Client starting. Connect to server'
 s shared memory...\n",54)
@@ -2786,7 +2787,7 @@ Overfull \hbox (22.39066pt too wide) in paragraph at lines 248--248
 v(0x88,0x4),...})
  []
 
-
+[18]
 Overfull \hbox (16.21716pt too wide) in paragraph at lines 248--248
 []\T2B/cmtt/m/n/12 01:49:40.747622 read(0,0x6101cafae6c0,1024) = ? ERESTARTSYS 
 (To be restarted
@@ -2931,7 +2932,7 @@ Overfull \hbox (1380.55899pt too wide) in paragraph at lines 248--248
 20\315\2\0\0\0\0\0\0\0\0\0\0\0\0\0\10\0\0\0\0\0\0\0\10\0\0\0\0\0\0\0"...,832)
  []
 
-[18]
+
 Overfull \hbox (47.08463pt too wide) in paragraph at lines 248--248
 []\T2B/cmtt/m/n/12 01:49:43.747212 fstat(3,{st_mode=S_IFREG|0644,st_size=183024
 ,...}) = 0 <0.000064>[] 
@@ -2955,7 +2956,7 @@ Overfull \hbox (152.034pt too wide) in paragraph at lines 248--248
 ATE|MAP_FIXED|MAP_DENYWRITE,3,0x28000)
  []
 
-
+[19]
 Overfull \hbox (213.76892pt too wide) in paragraph at lines 248--248
 []\T2B/cmtt/m/n/12 01:49:43.747934 mmap(0x74230164b000,8192,PROT_READ|PROT_WRIT
 E,MAP_PRIVATE|MAP_FIXED|MAP_DENYWRITE,3,0x2b000)
@@ -3131,7 +3132,7 @@ Overfull \hbox (213.76892pt too wide) in paragraph at lines 248--248
 E,MAP_PRIVATE|MAP_FIXED|MAP_DENYWRITE,3,0xe7000)
  []
 
-[19]
+
 Overfull \hbox (59.43161pt too wide) in paragraph at lines 248--248
 []\T2B/cmtt/m/n/12 01:49:43.753030 mmap(NULL,8192,PROT_READ|PROT_WRITE,MAP_PRIV
 ATE|MAP_ANONYMOUS,-1,0)
@@ -3143,7 +3144,7 @@ Overfull \hbox (65.6051pt too wide) in paragraph at lines 248--248
 VATE|MAP_ANONYMOUS,-1,0)
  []
 
-
+[20]
 Overfull \hbox (114.99304pt too wide) in paragraph at lines 248--248
 []\T2B/cmtt/m/n/12 01:49:43.756673 prlimit64(0,RLIMIT_STACK,NULL,{rlim_cur=8192
 *1024,rlim_max=RLIM64_INFINITY})
@@ -3203,17 +3204,17 @@ Overfull \hbox (16.21716pt too wide) in paragraph at lines 248--248
 (To be restarted
  []
 
-) [20] (./report.aux)
+) [21] (./report.aux)
  ***********
 LaTeX2e <2023-11-01> patch level 1
 L3 programming layer <2024-01-22>
  ***********
  ) 
 Here is how much of TeX's memory you used:
- 22110 strings out of 474222
- 347688 string characters out of 5748733
- 2248975 words of memory out of 5000000
- 43495 multiletter control sequences out of 15000+600000
+ 22164 strings out of 474222
+ 348423 string characters out of 5748733
+ 2287975 words of memory out of 5000000
+ 43501 multiletter control sequences out of 15000+600000
  577546 words of font info for 66 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  90i,7n,109p,1896b,2359s stack positions out of 10000i,1000n,20000p,200000b,200000s
@@ -3221,10 +3222,10 @@ Here is how much of TeX's memory you used:
 usr/share/texlive/texmf-dist/fonts/type1/public/tempora/Tempora-Regular.pfb></u
 sr/share/texmf/fonts/type1/public/cm-super/sftt1000.pfb></usr/share/texmf/fonts
 /type1/public/cm-super/sftt1200.pfb>
-Output written on report.pdf (21 pages, 199657 bytes).
+Output written on report.pdf (22 pages, 202701 bytes).
 PDF statistics:
- 746 PDF objects out of 1000 (max. 8388607)
- 706 compressed objects within 8 object streams
- 512 named destinations out of 1000 (max. 500000)
+ 806 PDF objects out of 1000 (max. 8388607)
+ 765 compressed objects within 8 object streams
+ 560 named destinations out of 1000 (max. 500000)
  7737 words of extra memory for PDF output out of 10000 (max. 10000000)
 

@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023/Debian) (preloaded format=pdflatex 2025.11.1)  12 DEC 2025 17:57
+This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023/Debian) (preloaded format=pdflatex 2025.11.1)  25 DEC 2025 14:28
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1682,13 +1682,13 @@ LaTeX Warning: Unused global option(s):
 
 (./report.aux
 LaTeX Font Info:    Trying to load font information for T2B+Tempora-TLF on inpu
-t line 10.
+t line 9.
 
 (/usr/share/texlive/texmf-dist/tex/latex/tempora/t2btempora-tlf.fd
 File: t2btempora-tlf.fd 2015/09/13 Font definitions for T2B/Tempora-TLF.
 )
 LaTeX Font Info:    Font shape `T2B/Tempora-TLF/m/n' will be
-(Font)              scaled to size 12.0pt on input line 10.
+(Font)              scaled to size 12.0pt on input line 9.
 )
 \openout1 = `report.aux'.
 
@@ -8923,7 +8923,7 @@ t/fonts/type1/public/amsfonts/cm/cmr8.pfb></usr/share/texlive/texmf-dist/fonts/
 type1/public/amsfonts/cm/cmsy10.pfb></usr/share/texlive/texmf-dist/fonts/type1/
 public/amsfonts/cm/cmsy8.pfb></usr/share/texmf/fonts/type1/public/cm-super/sftt
 1200.pfb>
-Output written on report.pdf (64 pages, 253442 bytes).
+Output written on report.pdf (64 pages, 253460 bytes).
 PDF statistics:
  470 PDF objects out of 1000 (max. 8388607)
  379 compressed objects within 4 object streams

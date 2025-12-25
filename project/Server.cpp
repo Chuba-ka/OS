@@ -1,4 +1,4 @@
-#include "common.h"
+#include "Server.h"
 #include <sys/mman.h>
 #include <sys/stat.h>
 #include <fcntl.h>
@@ -6,7 +6,6 @@
 #include <cstring>
 #include <iostream>
 #include <fstream>
-#include <chrono>
 #include <ctime>
 #include <pthread.h>
 #include <sstream>
@@ -14,16 +13,47 @@
 
 size_t SHM_SIZE = sizeof(SharedData);
 
-static SharedData *data = nullptr;
-static int shm_fd = -1;
-static volatile sig_atomic_t stop_requested = 0;
+Server *Server::instance = nullptr;
 
-void signal_handler(int)
+void server_signal_handler(int sig)
 {
-    stop_requested = 1;
+    if (Server::instance)
+    {
+        Server::instance->stop_requested = 1;
+    }
 }
 
-void init_shared_memory(bool create_new)
+Server::Server() : data(nullptr), shm_fd(-1), stop_requested(0)
+{
+    instance = this;
+
+    bool created = false;
+    int temp_fd = shm_open(SHM_NAME, O_RDWR, 0600);
+    if (temp_fd < 0)
+    {
+        created = true;
+    }
+    else
+    {
+        close(temp_fd);
+    }
+    init_shared_memory(created);
+}
+
+Server::~Server()
+{
+    if (data)
+    {
+        munmap(data, SHM_SIZE);
+    }
+    if (shm_fd >= 0)
+    {
+        close(shm_fd);
+        shm_unlink(SHM_NAME);
+    }
+}
+
+void Server::init_shared_memory(bool create_new)
 {
     if (create_new)
     {
@@ -77,44 +107,46 @@ void init_shared_memory(bool create_new)
     }
 }
 
-void append_history(const Message &m)
+void Server::append_history(const Message &m)
 {
     std::ofstream ofs("history.txt", std::ios::app);
     if (!ofs)
         return;
+
     std::time_t t = (time_t)m.timestamp;
     char buf[64];
     std::strftime(buf, sizeof(buf), "%Y-%m-%d %H:%M:%S", std::localtime(&t));
     ofs << "[" << buf << "] " << m.sender << " -> " << m.recipient << ": " << m.text << "\n";
 }
 
-void *monitor_and_save(void *)
+void *Server::monitor_and_save(void *arg)
 {
-    while (!stop_requested)
+    Server *self = static_cast<Server *>(arg);
+    while (!self->stop_requested)
     {
-        pthread_mutex_lock(&data->mutex);
-        pthread_cond_wait(&data->cond, &data->mutex);
+        pthread_mutex_lock(&self->data->mutex);
+        pthread_cond_wait(&self->data->cond, &self->data->mutex);
 
-        if (stop_requested || data->server_stopping)
+        if (self->stop_requested || self->data->server_stopping)
         {
-            pthread_mutex_unlock(&data->mutex);
+            pthread_mutex_unlock(&self->data->mutex);
             break;
         }
 
         for (int i = 0; i < (int)MAX_MESSAGES; ++i)
         {
-            if (data->messages[i].timestamp != 0 && data->messages[i].saved == 0)
+            if (self->data->messages[i].timestamp != 0 && self->data->messages[i].saved == 0)
             {
-                append_history(data->messages[i]);
-                data->messages[i].saved = 1;
+                self->append_history(self->data->messages[i]);
+                self->data->messages[i].saved = 1;
             }
         }
-        pthread_mutex_unlock(&data->mutex);
+        pthread_mutex_unlock(&self->data->mutex);
     }
     return nullptr;
 }
 
-void cli_loop()
+void Server::cli_loop()
 {
     std::string cmd;
     while (!stop_requested)
@@ -127,6 +159,7 @@ void cli_loop()
         }
         if (stop_requested)
             break;
+
         if (cmd == "quit" || cmd == "exit")
         {
             break;
@@ -152,6 +185,7 @@ void cli_loop()
             std::getline(iss, keyword);
             if (!keyword.empty() && keyword[0] == ' ')
                 keyword.erase(0, 1);
+
             std::ifstream ifs("history.txt");
             if (!ifs)
             {
@@ -161,7 +195,8 @@ void cli_loop()
             std::string line;
             while (std::getline(ifs, line))
             {
-                bool users_ok = (line.find(" " + a + " -> " + b + ":") != std::string::npos) || (line.find(" " + b + " -> " + a + ":") != std::string::npos);
+                bool users_ok = (line.find(" " + a + " -> " + b + ":") != std::string::npos) ||
+                                (line.find(" " + b + " -> " + a + ":") != std::string::npos);
                 bool keyword_ok = keyword.empty() || (line.find(keyword) != std::string::npos);
                 if (users_ok && keyword_ok)
                 {
@@ -180,48 +215,36 @@ void cli_loop()
     }
 }
 
-int main()
+void Server::run()
 {
-    struct sigaction sa;
-    sa.sa_handler = signal_handler;
-    sigemptyset(&sa.sa_mask);
-    sa.sa_flags = 0;
-    sigaction(SIGINT, &sa, nullptr);
-
-    std::cout << "Starting server...\n";
-    bool created = false;
-    shm_fd = shm_open(SHM_NAME, O_RDWR, 0600);
-    if (shm_fd < 0)
-    {
-        created = true;
-    }
-    else
-    {
-        close(shm_fd);
-    }
-    init_shared_memory(created);
-
-    pthread_t monitor_thread;
-    if (pthread_create(&monitor_thread, nullptr, monitor_and_save, nullptr) != 0)
+    if (pthread_create(&monitor_thread, nullptr, &Server::monitor_and_save, this) != 0)
     {
         perror("pthread_create");
-        return 1;
+        return;
     }
 
     cli_loop();
 
     stop_requested = 1;
-
     pthread_mutex_lock(&data->mutex);
     data->server_stopping = 1;
     pthread_cond_broadcast(&data->cond);
     pthread_mutex_unlock(&data->mutex);
 
     pthread_join(monitor_thread, nullptr);
-
-    munmap(data, SHM_SIZE);
-    close(shm_fd);
-    shm_unlink(SHM_NAME);
     std::cout << "Server shutting down...\n";
+}
+
+int main()
+{
+    struct sigaction sa;
+    sa.sa_handler = server_signal_handler;
+    sigemptyset(&sa.sa_mask);
+    sa.sa_flags = 0;
+    sigaction(SIGINT, &sa, nullptr);
+
+    std::cout << "Starting server...\n";
+    Server s;
+    s.run();
     return 0;
 }
